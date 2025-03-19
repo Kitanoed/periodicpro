@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PeriodicPro</string>
+    <string name="don_t_have_an_account_register" />
+    <string name="login" />
+    <string name="password" />
+    <string name="username" />
+</resources>
