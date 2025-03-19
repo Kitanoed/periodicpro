@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="alkali_metal">#FF6B6B</color>
+    <color name="alkaline_earth_metal">#FFD93D</color>
+    <color name="transition_metal">#FF8F43</color>
+    <color name="post_transition_metal">#A8E6CF</color>
+    <color name="metalloid">#FFD3B6</color>
+    <color name="nonmetal">#98DDCA</color>
+    <color name="halogen">#FF9F45</color>
+    <color name="noble_gas">#CDFCF6</color>
+    <color name="lanthanide">#FFB5A7</color>
+    <color name="actinide">#FED1BD</color>
 </resources>

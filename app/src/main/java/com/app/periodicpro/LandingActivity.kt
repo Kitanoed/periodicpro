@@ -17,7 +17,8 @@ class LandingActivity : Activity() {
         val button_pTable = findViewById<Button>(R.id.button_pTable)
         button_pTable.setOnClickListener {
             Log.e("PeriodicPro Project", "Button is clicked!")
-            this.toast("No Periodic Table screen yet!")
+            val intent = Intent(this, PeriodicTableActivity::class.java)
+            startActivity(intent)
         }
         val button_table = findViewById<Button>(R.id.button_table)
         button_table.setOnClickListener {
