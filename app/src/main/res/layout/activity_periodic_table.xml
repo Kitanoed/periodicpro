@@ -6,7 +6,7 @@
     android:background="#212121"
     android:padding="8dp">
 
-    <!-- Top App Bar -->
+    <!-- Top App Bar with Categories Dropdown -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,133 +33,84 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1" />
+
+        <!-- Categories Button -->
+        <Button
+            android:id="@+id/btnShowCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Categories"
+            android:textSize="12sp"
+            android:background="@drawable/categories_button_bg"
+            android:textColor="#ffffff"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textAllCaps="false" />
     </LinearLayout>
 
-    <!-- Legend -->
+    <!-- Sample Categories Hint -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="8dp"
         android:background="@drawable/rounded_legend_bg"
         android:layout_marginBottom="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Element Categories"
+            android:text="Categories: "
             android:textColor="#fcfcfc"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textSize="12sp"/>
 
-        <GridLayout
-            android:layout_width="match_parent"
+        <!-- Sample color indicators -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="5"
-            android:useDefaultMargins="true">
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:background="@drawable/rounded_alkali_metal_bg"
-                android:text="Alkali Metals"
-                android:textColor="#000000"
-                android:gravity="center"/>
+                android:layout_marginEnd="2dp"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
-                android:background="@drawable/rounded_alkaline_earth_bg"
-                android:text="Alkaline Earth Metals"
-                android:textColor="#000000"
-                android:gravity="center"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
-                android:background="@drawable/rounded_transition_bg"
-                android:text="Transition Metals"
-                android:textColor="#000000"
-                android:gravity="center"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
-                android:background="@drawable/rounded_post_transition_bg"
-                android:text="Post-Transition Metals"
-                android:textColor="#000000"
-                android:gravity="center"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
-                android:background="@drawable/rounded_metalloid_bg"
-                android:text="Metalloids"
-                android:textColor="#000000"
-                android:gravity="center"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:background="@drawable/rounded_nonmetal_bg"
-                android:text="Nonmetals"
-                android:textColor="#000000"
-                android:gravity="center"/>
+                android:layout_marginEnd="2dp"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
-                android:background="@drawable/rounded_halogen_bg"
-                android:text="Halogens"
-                android:textColor="#000000"
-                android:gravity="center"/>
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/rounded_transition_bg"
+                android:layout_marginEnd="2dp"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:background="@drawable/rounded_noble_gas_bg"
-                android:text="Noble Gases"
-                android:textColor="#000000"
-                android:gravity="center"/>
+                android:layout_marginEnd="2dp"/>
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/rounded_metalloid_bg"
+                android:layout_marginEnd="2dp"/>
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
-                android:background="@drawable/rounded_lanthanide_bg"
-                android:text="Lanthanides"
-                android:textColor="#000000"
-                android:gravity="center"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:padding="4dp"
-                android:background="@drawable/rounded_actinide_bg"
-                android:text="Actinides"
-                android:textColor="#000000"
-                android:gravity="center"/>
-        </GridLayout>
+                android:text="..."
+                android:textColor="#fcfcfc"
+                android:textSize="12sp"/>
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Periodic Table Grid in ScrollView -->

@@ -1,9 +1,11 @@
 package com.app.periodicpro
 
 import android.app.Activity
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.GridLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +23,33 @@ class PeriodicTableActivity : Activity() {
 
         gridLayout = findViewById(R.id.periodicTableGrid)
         setupPeriodicTable()
+        
+        // Set up categories button
+        val btnShowCategories = findViewById<Button>(R.id.btnShowCategories)
+        btnShowCategories.setOnClickListener {
+            showCategoriesDialog()
+        }
+    }
+    
+    private fun showCategoriesDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_element_categories)
+        
+        // Set dialog width to match parent
+        val layoutParams = dialog.window?.attributes
+        layoutParams?.width = resources.displayMetrics.widthPixels * 9 / 10 // 90% of screen width
+        dialog.window?.attributes = layoutParams
+        
+        // Remove dialog default background
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        
+        // Set up close button
+        val btnCloseDialog = dialog.findViewById<Button>(R.id.btnCloseDialog)
+        btnCloseDialog.setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        dialog.show()
     }
 
     private fun setupPeriodicTable() {
