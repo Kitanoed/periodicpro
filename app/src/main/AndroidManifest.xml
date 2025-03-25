@@ -13,9 +13,6 @@
         android:theme="@style/Theme.PeriodicPro"
         tools:targetApi="31">
         <activity
-            android:name=".helper.ElementListViewAdapter"
-            android:exported="false" />
-        <activity
             android:name=".FavoritesActivity"
             android:exported="false" />
         <activity
@@ -44,6 +41,9 @@
             android:exported="false" />
         <activity
             android:name=".PeriodicTableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchResultsActivity"
             android:exported="false" />
     </application>
 

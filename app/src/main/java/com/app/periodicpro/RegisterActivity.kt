@@ -1,13 +1,12 @@
 package com.app.periodicpro
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.content.Intent
 import android.widget.EditText
 import android.widget.Toast
 import com.app.periodicpro.utils.toast
-
 
 class RegisterActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {

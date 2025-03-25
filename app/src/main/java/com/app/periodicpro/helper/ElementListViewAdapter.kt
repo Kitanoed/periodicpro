@@ -5,27 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import com.app.periodicpro.R
-import com.app.periodicpro.data.Subject
+import com.app.periodicpro.data.ElementCategory
+import com.app.periodicpro.data.FavoriteElement
 
 class ElementListViewAdapter(
-    val context: Context,
-    val subjectList: List<Subject>,
-    val onClickShowMore : (Subject) -> Unit,
-    val onClickItem: (Subject) -> Unit,
-    val onLongPressed: (position: Int) -> Unit
+    private val context: Context,
+    private val subjectList: List<FavoriteElement>,
+    private val onClickShowMore: (FavoriteElement) -> Unit,
+    private val onClickItem: (FavoriteElement) -> Unit,
+    private val onLongPressed: (position: Int) -> Unit
 ): BaseAdapter() {
 
-    override fun getView(position: Int, contentView: View?, parent: ViewGroup?): View {
-        val view = contentView ?: LayoutInflater.from(context).inflate(
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val view = convertView ?: LayoutInflater.from(context).inflate(
             R.layout.element_list,
             parent,
             false
         )
 
-        val photo = view.findViewById<ImageView>(R.id.imageview_logo)
+        val symbol = view.findViewById<TextView>(R.id.textview_symbol)
         val code = view.findViewById<TextView>(R.id.textview_code)
         val desc = view.findViewById<TextView>(R.id.textview_desc)
         val schedule = view.findViewById<TextView>(R.id.textview_schedule)
@@ -33,10 +33,24 @@ class ElementListViewAdapter(
 
         val subject = subjectList[position]
 
-        photo.setImageResource(subject.photo)
-        code.setText(subject.code)
-        desc.setText(subject.desc)
-        schedule.setText(subject.schedule)
+        // Set element symbol (first letter of name or first two characters of symbol if available)
+        if (subject.desc.startsWith("Symbol:")) {
+            // Extract the element symbol from the description
+            val symbolText = subject.desc.substringAfter("Symbol: ").trim()
+            symbol.text = symbolText
+        } else {
+            // Fallback to first letter of the element name
+            symbol.text = subject.code.take(1)
+        }
+
+        // Set the background of the symbol TextView based on the element category
+        subject.category?.let { category ->
+            symbol.setBackgroundResource(getCategoryBackgroundResource(category))
+        }
+
+        code.text = subject.code
+        desc.text = subject.desc
+        schedule.text = subject.schedule
 
         showMore.setOnClickListener {
             onClickShowMore(subject)
@@ -52,6 +66,21 @@ class ElementListViewAdapter(
         }
 
         return view
+    }
+    
+    private fun getCategoryBackgroundResource(category: ElementCategory): Int {
+        return when (category) {
+            ElementCategory.ALKALI_METAL -> R.drawable.rounded_alkali_metal_bg
+            ElementCategory.ALKALINE_EARTH_METAL -> R.drawable.rounded_alkaline_earth_bg
+            ElementCategory.TRANSITION_METAL -> R.drawable.rounded_transition_bg
+            ElementCategory.POST_TRANSITION_METAL -> R.drawable.rounded_post_transition_bg
+            ElementCategory.METALLOID -> R.drawable.rounded_metalloid_bg
+            ElementCategory.NONMETAL -> R.drawable.rounded_nonmetal_bg
+            ElementCategory.HALOGEN -> R.drawable.rounded_halogen_bg
+            ElementCategory.NOBLE_GAS -> R.drawable.rounded_noble_gas_bg
+            ElementCategory.LANTHANIDE -> R.drawable.rounded_lanthanide_bg
+            ElementCategory.ACTINIDE -> R.drawable.rounded_actinide_bg
+        }
     }
 
     override fun getCount(): Int = subjectList.size

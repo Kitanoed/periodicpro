@@ -3,53 +3,69 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="16dp"
-    android:paddingHorizontal="6dp">
+    android:background="@drawable/rounded_form_bg"
+    android:padding="12dp">
 
-    <ImageView
-        android:id="@+id/imageview_logo"
-        android:layout_width="100dp"
-        android:layout_gravity="center_vertical"
-        android:scaleType="fitXY"
-        android:layout_height="100dp"/>
+    <!-- Element Symbol Card -->
+    <TextView
+        android:id="@+id/textview_symbol"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_card_bg"
+        android:gravity="center"
+        android:text="H"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_vertical"/>
 
+    <!-- Element Details -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_gravity="center_vertical">
+        
         <TextView
             android:id="@+id/textview_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="2dp"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textColor="#fcfcfc"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/textview_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="2dp"
-            android:textSize="16sp"/>
+            android:layout_marginTop="4dp"
+            android:textColor="#fcfcfc"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textview_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="2dp"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/textview_showmore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Show more..."
-            android:textSize="12sp"
-            android:textStyle="italic"
-            android:layout_gravity="right" />
-
+            android:layout_marginTop="2dp"
+            android:textColor="#fcfcfc"
+            android:textSize="14sp"/>
 
     </LinearLayout>
 
+    <!-- Show More Button -->
+    <TextView
+        android:id="@+id/textview_showmore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Details"
+        android:background="@drawable/rounded_details_button_bg"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"/>
 
 </LinearLayout>

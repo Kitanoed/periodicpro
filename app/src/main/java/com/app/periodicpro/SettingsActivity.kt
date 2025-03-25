@@ -2,12 +2,15 @@ package com.app.periodicpro
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.CompoundButton
+import android.widget.Switch
 import android.widget.Toast
-
 
 class SettingsActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {

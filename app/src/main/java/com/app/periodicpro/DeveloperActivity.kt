@@ -3,7 +3,6 @@ package com.app.periodicpro
 import android.app.Activity
 import android.os.Bundle
 
-
 class DeveloperActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
