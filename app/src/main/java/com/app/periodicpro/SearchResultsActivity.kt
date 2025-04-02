@@ -205,7 +205,7 @@ class SearchResultsActivity : Activity() {
                 if (matchByNameOrSymbol.isNotEmpty()) {
                     searchResults.addAll(matchByNameOrSymbol)
                 } else {
-                    // Try to match by partial category name (more carefully than before)
+
                     val categoriesMap = mapOf(
                         "alkali" to ElementCategory.ALKALI_METAL,
                         "alkaline" to ElementCategory.ALKALINE_EARTH_METAL,
