@@ -9,222 +9,222 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="10dp">
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_code" />
+                android:src="@drawable/ic_code"
+                android:layout_marginEnd="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Developers"
                 android:textColor="#fcfcfc"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_weight="1" />
         </LinearLayout>
 
-        <!-- Meet the Team -->
+        <!-- Meet the Team Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Meet the Team"
-            android:textSize="16sp"
+            android:textColor="#fcfcfc"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#fcfcfc"
-            android:paddingBottom="4dp"/>
+            android:paddingBottom="8dp" />
 
-        <!-- Developer 1 -->
+        <!-- Team Introduction -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:paddingLeft="10dp"
-            android:text="We're a small but mighty team of developers passionate about creating amazing digital experiences."
-            android:textColor="#fcfcfc"
-            android:textSize="14sp" />
+            android:text="We are a dedicated and enthusiastic team of student developers currently pursuing our Bachelor of Science in Information Technology. Hailing from section G6 of our second year, we are passionate about applying our growing knowledge to create impactful and engaging digital experiences."
+            android:textColor="#d3d3d3"
+            android:textSize="14sp"
+            android:paddingBottom="16dp" />
 
+        <!-- Andrei Sam Loy Profile -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_form_bg"
             android:orientation="vertical"
-            android:padding="12dp"
-            android:layout_marginBottom="12dp">
+            android:background="@drawable/rounded_form_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/profile2"
-                    android:layout_marginEnd="8dp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Andrei Sam Loy"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#fcfcfc"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BSIT - 2 G6"
-                        android:textSize="14sp"
-                        android:textColor="#fcfcfc"/>
-                </LinearLayout>
-            </LinearLayout>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/profile2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="The best way to predict the future is to invent it.\n – Alan Kay."
-                android:textSize="14sp"
+                android:text="Andrei Sam Loy"
                 android:textColor="#fcfcfc"
-                android:paddingTop="8dp"/>
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BSIT - 2nd Year / G6\nLead Developer / Full Stack"
+                android:textColor="#d3d3d3"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="&quot;The best way to predict the future is to invent it.&quot; - Alan Kay"
+                android:textColor="#fcfcfc"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Role &amp; Experience:\nAs the Lead Developer, Andrei guides the technical direction of our projects with 2 years of full-stack experience. He is proficient in Java, Kotlin, and C."
+                android:textColor="#d3d3d3"
+                android:textSize="14sp"
+                android:paddingTop="10dp" />
+
+            <!-- Andrei Links -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="8dp">
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:layout_gravity="center_horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Java"
-                    android:background="@drawable/rounded_card_bg"
-                    android:padding="6dp"
-                    android:textSize="12sp"/>
+                <ImageView
+                    android:id="@+id/andrei_ig"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_instagram"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="Andrei Instagram" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    android:background="@drawable/rounded_card_bg"
-                    android:padding="6dp"
-                    android:textSize="12sp"
-                    android:layout_marginStart="4dp"/>
+                <ImageView
+                    android:id="@+id/andrei_fb"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_facebook"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="Andrei Facebook" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kotlin"
-                    android:background="@drawable/rounded_card_bg"
-                    android:padding="6dp"
-                    android:textSize="12sp"
-                    android:layout_marginStart="4dp"/>
+                <ImageView
+                    android:id="@+id/andrei_github"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_github"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="Andrei GitHub" />
             </LinearLayout>
-
-
         </LinearLayout>
 
-        <!-- Developer 2 (Same Structure) -->
+        <!-- Axcel Macansantos Profile -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_form_bg"
-            android:layout_marginBottom="12dp"
             android:orientation="vertical"
-            android:padding="12dp">
+            android:background="@drawable/rounded_form_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/profile1" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Axcelson Macansantos"
-                        android:textColor="#fcfcfc"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BSIT - 2 G6"
-                        android:textColor="#fcfcfc"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </LinearLayout>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/profile1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:text="It’s not a bug, it’s an undocumented feature.\n – Anonymous"
+                android:text="Axcel Macansantos"
                 android:textColor="#fcfcfc"
-                android:textSize="14sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BSIT - 2nd Year / G6\nAssistant Developer / UI-UX Focus"
+                android:textColor="#d3d3d3"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="&quot;It's not a bug, it's an undocumented feature.&quot; - Anonymous"
+                android:textColor="#fcfcfc"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Role &amp; Contribution:\nAxcel specializes in front-end development and ensures the app's UI/UX is intuitive and visually appealing. He has skills in Java, Kotlin, and C."
+                android:textColor="#d3d3d3"
+                android:textSize="14sp"
+                android:paddingTop="10dp" />
+
+            <!-- Axcel Links -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="8dp">
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:layout_gravity="center_horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_card_bg"
-                    android:padding="6dp"
-                    android:text="Java"
-                    android:textSize="12sp" />
+                <ImageView
+                    android:id="@+id/axcel_ig"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_instagram"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="Axcel Instagram" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:background="@drawable/rounded_card_bg"
-                    android:padding="6dp"
-                    android:text="C"
-                    android:textSize="12sp" />
+                <ImageView
+                    android:id="@+id/axcel_fb"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_facebook"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="Axcel Facebook" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:background="@drawable/rounded_card_bg"
-                    android:padding="6dp"
-                    android:text="Kotlin"
-                    android:textSize="12sp" />
+                <ImageView
+                    android:id="@+id/axcel_github"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_github"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="Axcel GitHub" />
             </LinearLayout>
         </LinearLayout>
 

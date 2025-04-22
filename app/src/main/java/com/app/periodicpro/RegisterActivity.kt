@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.app.periodicpro.utils.toast
 
 class RegisterActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,21 +19,34 @@ class RegisterActivity : Activity() {
         val button_goToLogin = findViewById<Button>(R.id.button_goToLogin)
         button_goToLogin.setOnClickListener {
 
-            val username = edittext_usernameRegister.text
-            val password = edittext_passwordRegister.text
-            val confirmPassword = edittext_confirmPassword.text
+            val username = edittext_usernameRegister.text.toString()
+            val password = edittext_passwordRegister.text.toString()
+            val confirmPassword = edittext_confirmPassword.text.toString()
 
-            if(username.isNullOrEmpty() || password.isNullOrEmpty() || confirmPassword.isNullOrEmpty()){
-                this.toast("Username, Password, and Confirm Password cannot be empty!")
+            if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(this, "Username, Password, and Confirm Password cannot be empty!", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            startActivity(
-                Intent(this, LoginActivity::class.java).apply {
-                    putExtra("username", username.toString())
-                    putExtra("password", password.toString())
-                }
-            )
+            if (password != confirmPassword) {
+                Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+
+            val sharedPref = getSharedPreferences("UserCredentials", MODE_PRIVATE)
+            with(sharedPref.edit()) {
+                putString("savedUsername", username)
+                putString("savedPassword", password)
+                apply()
+            }
+
+            Toast.makeText(this, "Registration successful! Please login.", Toast.LENGTH_LONG).show()
+
+            // Go back to login screen
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

@@ -2,14 +2,10 @@ package com.app.periodicpro
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.CompoundButton
-import android.widget.Switch
 import android.widget.Toast
 
 class SettingsActivity : Activity() {
@@ -19,28 +15,31 @@ class SettingsActivity : Activity() {
 
         val button_developer = findViewById<Button>(R.id.button_developer)
         button_developer.setOnClickListener {
-            Log.e("PeriodicPro Project", "Button is clicked!")
-
-            Toast.makeText(this, "Opening Developers screen!", Toast.LENGTH_LONG).show()
+            Log.e("PeriodicPro Project", "Developer Button clicked!")
 
             val intent = Intent(this, DeveloperActivity::class.java)
             startActivity(intent)
         }
+
         val button_help = findViewById<Button>(R.id.button_help)
         button_help.setOnClickListener {
-            Log.e("PeriodicPro Project", "Button is clicked!")
-            Toast.makeText(this, "No Help & Support screen yet!", Toast.LENGTH_LONG).show()
+            Log.e("PeriodicPro Project", "Help Button clicked!")
+
+            val intent = Intent(this, HelpActivity::class.java)
+            startActivity(intent)
         }
 
         val button_privacy = findViewById<Button>(R.id.button_privacy)
         button_privacy.setOnClickListener {
-            Log.e("PeriodicPro Project", "Button is clicked!")
-            Toast.makeText(this, "No Privacy Policy screen yet!", Toast.LENGTH_LONG).show()
+            Log.e("PeriodicPro Project", "Privacy Button clicked!")
+
+            val intent = Intent(this, PrivacyPolicyActivity::class.java)
+            startActivity(intent)
         }
 
         val button_logout = findViewById<Button>(R.id.button_logout)
         button_logout.setOnClickListener {
-            Log.e("PeriodicPro Project", "Button is clicked!")
+            Log.e("PeriodicPro Project", "Logout Button clicked!")
 
             showLogoutConfirmation()
         }
@@ -54,7 +53,7 @@ class SettingsActivity : Activity() {
                 Toast.makeText(this, "Logged out successfully!", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clears back stack
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
             }

@@ -14,6 +14,8 @@ import com.app.periodicpro.fragments.NavigationFragment
 
 class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedListener {
     private lateinit var navigationFragment: NavigationFragment
+    private var backPressedTime = 0L
+    private lateinit var backToast: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,7 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
                 val intent = Intent(this, FavoritesActivity::class.java)
                 startActivity(intent)
             }
-            
+
             // Set up search functionality
             val editTextSearch = findViewById<EditText>(R.id.edittext_search)
             editTextSearch.setOnEditorActionListener { textView, actionId, event ->
@@ -52,18 +54,18 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
                 }
                 return@setOnEditorActionListener false
             }
-            
+
             // Add search icon click listener
             findViewById<ImageView>(R.id.search_icon).setOnClickListener {
                 performSearch(editTextSearch.text.toString())
             }
-            
+
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(this, "Error initializing the app: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
-    
+
     private fun performSearch(query: String) {
         if (query.isNotEmpty()) {
             val intent = Intent(this, SearchResultsActivity::class.java)
@@ -98,5 +100,20 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             e.printStackTrace()
             Toast.makeText(this, "Error navigating: ${e.message}", Toast.LENGTH_LONG).show()
         }
+    }
+
+
+    override fun onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            backToast.cancel()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        } else {
+            backToast = Toast.makeText(this, "Press again to log out", Toast.LENGTH_SHORT)
+            backToast.show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 }

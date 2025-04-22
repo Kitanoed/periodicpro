@@ -1,11 +1,13 @@
 package com.app.periodicpro
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 
 class ProfileActivity : Activity() {
 
@@ -22,11 +24,20 @@ class ProfileActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+
         etName = findViewById(R.id.etName)
         etEmail = findViewById(R.id.etEmail)
         etYear = findViewById(R.id.etYear)
         etCourse = findViewById(R.id.etCourse)
         btnEdit = findViewById(R.id.btnEdit)
+
+
+        val btnBack = findViewById<Button>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            val intent = Intent(this, LandingActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE)
 
@@ -36,6 +47,8 @@ class ProfileActivity : Activity() {
             if (isEditing) {
                 saveUserData()
                 toggleEditing(false)
+
+                Toast.makeText(this, "Profile Updated Successfully!", Toast.LENGTH_SHORT).show()
             } else {
                 toggleEditing(true)
             }
@@ -59,8 +72,8 @@ class ProfileActivity : Activity() {
     }
 
     private fun loadUserData() {
-        etName.setText(sharedPreferences.getString("name", "John Doe"))
-        etEmail.setText(sharedPreferences.getString("email", "john@example.com"))
+        etName.setText(sharedPreferences.getString("name", "User112233"))
+        etEmail.setText(sharedPreferences.getString("email", "User@gmail.com"))
         etYear.setText(sharedPreferences.getString("year", "Second Year"))
         etCourse.setText(sharedPreferences.getString("course", "Computer Science"))
 

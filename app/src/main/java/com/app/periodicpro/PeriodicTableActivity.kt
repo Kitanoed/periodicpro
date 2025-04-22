@@ -52,6 +52,33 @@ class PeriodicTableActivity : Activity() {
         
         dialog.show()
     }
+    private fun showElementInfoDialog(element: Element) {
+        val dialog = android.app.Dialog(this)
+        dialog.setContentView(R.layout.element_popup)
+
+        val nameText = dialog.findViewById<TextView>(R.id.popup_name)
+        val atomicNumberText = dialog.findViewById<TextView>(R.id.popup_atomic_number)
+        val rowText = dialog.findViewById<TextView>(R.id.popup_row)
+        val columnText = dialog.findViewById<TextView>(R.id.popup_column)
+        val categoryText = dialog.findViewById<TextView>(R.id.popup_category)
+        val closeButton = dialog.findViewById<Button>(R.id.popup_close_button)
+
+        nameText.text = "${element.name} (${element.symbol})"
+        atomicNumberText.text = "Atomic Number: ${element.atomicNumber}"
+        rowText.text = "Row: ${element.row}"
+        columnText.text = "Column: ${element.column}"
+        categoryText.text = "Category: ${element.category.name.replace("_", " ").lowercase().replaceFirstChar { it.uppercase() }}"
+
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+
+        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+
+        dialog.show()
+    }
+
 
     private fun setupPeriodicTable() {
         try {
@@ -95,7 +122,7 @@ class PeriodicTableActivity : Activity() {
 
     private fun createElementView(element: Element): View {
         val view = LayoutInflater.from(this).inflate(R.layout.element_card, null)
-        
+
         val atomicNumber = view.findViewById<TextView>(R.id.atomicNumber)
         val elementSymbol = view.findViewById<TextView>(R.id.elementSymbol)
         val elementName = view.findViewById<TextView>(R.id.elementName)
@@ -104,7 +131,6 @@ class PeriodicTableActivity : Activity() {
         elementSymbol.text = element.symbol
         elementName.text = element.name
 
-        // Set background drawable based on element category
         val backgroundResId = when (element.category) {
             ElementCategory.ALKALI_METAL -> R.drawable.rounded_alkali_metal_bg
             ElementCategory.ALKALINE_EARTH_METAL -> R.drawable.rounded_alkaline_earth_bg
@@ -117,18 +143,18 @@ class PeriodicTableActivity : Activity() {
             ElementCategory.LANTHANIDE -> R.drawable.rounded_lanthanide_bg
             ElementCategory.ACTINIDE -> R.drawable.rounded_actinide_bg
         }
-        
         view.setBackgroundResource(backgroundResId)
-        
-        // Set content description for accessibility
+
         view.contentDescription = "${element.name}, element ${element.atomicNumber}, symbol ${element.symbol}"
-        
+
+
         view.setOnClickListener {
-            Toast.makeText(this, "${element.name} (${element.symbol})", Toast.LENGTH_SHORT).show()
+            showElementInfoDialog(element)
         }
 
         return view
     }
+
 
     private fun initializeElements() {
         // Add elements in order of atomic number
