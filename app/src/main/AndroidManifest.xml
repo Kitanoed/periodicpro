@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PeriodicPro"
         tools:targetApi="31">
         <activity
+            android:name=".helper.SearchResultAdapter"
+            android:exported="false" />
+        <activity
             android:name=".PrivacyPolicyActivity"
             android:exported="false" />
         <activity

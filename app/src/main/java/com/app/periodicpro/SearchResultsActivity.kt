@@ -1,15 +1,12 @@
 package com.app.periodicpro
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.app.periodicpro.data.Element
 import com.app.periodicpro.data.ElementCategory
 
@@ -18,259 +15,27 @@ class SearchResultsActivity : Activity() {
     private lateinit var tvResultsCount: TextView
     private lateinit var tvSearchQuery: TextView
     private lateinit var btnBack: ImageView
-    
+
     private val searchResults = mutableListOf<Element>()
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_results)
-        
-        // Initialize views
+
         lvSearchResults = findViewById(R.id.lv_search_results)
         tvResultsCount = findViewById(R.id.tv_results_count)
         tvSearchQuery = findViewById(R.id.tv_search_query)
         btnBack = findViewById(R.id.btn_back)
-        
-        // Set up back button
-        btnBack.setOnClickListener {
-            finish() // Finish this activity and return to previous one
-        }
-        
-        // Get search query from intent
+
+        btnBack.setOnClickListener { finish() }
+
         val searchQuery = intent.getStringExtra("SEARCH_QUERY") ?: ""
         tvSearchQuery.text = "\"$searchQuery\""
-        
-        // Perform search
+
         searchElements(searchQuery)
-        
-        // Convert elements to simple strings for display
-        val displayItems = searchResults.map { element ->
-            "${element.name} (${element.symbol}) - Atomic Number: ${element.atomicNumber}"
-        }
-        
-        // Set up adapter with white text color
-        val adapter = object : ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_list_item_1,
-            displayItems
-        ) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getView(position, convertView, parent)
-                val textView = view.findViewById<TextView>(android.R.id.text1)
-                textView.setTextColor(Color.WHITE)
-                return view
-            }
-        }
-        
-        lvSearchResults.adapter = adapter
 
-        lvSearchResults.setOnItemClickListener { _, _, position, _ ->
-            val element = searchResults[position]
-            Toast.makeText(this, "${element.name} (${element.symbol}) - Atomic Number: ${element.atomicNumber}", Toast.LENGTH_SHORT).show()
-        }
-    }
-    
-    override fun onBackPressed() {
-        finish()
-    }
-    
-    private fun searchElements(query: String) {
-        searchResults.clear()
-
-        val allElements = getAllElements()
-
-        val searchTermLower = query.trim().lowercase()
-
-        when (searchTermLower) {
-            "metal" -> {
-                val metalElements = allElements.filter { element ->
-                    element.category == ElementCategory.ALKALI_METAL ||
-                    element.category == ElementCategory.ALKALINE_EARTH_METAL ||
-                    element.category == ElementCategory.TRANSITION_METAL ||
-                    element.category == ElementCategory.POST_TRANSITION_METAL ||
-                    element.category == ElementCategory.LANTHANIDE ||
-                    element.category == ElementCategory.ACTINIDE
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(metalElements)
-                tvSearchQuery.text = "\"Metals\""
-            }
-            "nonmetal" -> {
-                val nonmetalElements = allElements.filter { element ->
-                    element.category == ElementCategory.NONMETAL ||
-                    element.category == ElementCategory.HALOGEN ||
-                    element.category == ElementCategory.NOBLE_GAS
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(nonmetalElements)
-                tvSearchQuery.text = "\"Nonmetals\""
-            }
-            "other nonmetal", "other nonmetals" -> {
-                val otherNonmetalElements = allElements.filter { element ->
-                    element.category == ElementCategory.NONMETAL
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(otherNonmetalElements)
-                tvSearchQuery.text = "\"Other Nonmetals\""
-            }
-            "noble gas" -> {
-                val nobleGasElements = allElements.filter { element ->
-                    element.category == ElementCategory.NOBLE_GAS
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(nobleGasElements)
-                tvSearchQuery.text = "\"Noble Gases\""
-            }
-            "halogen" -> {
-                val halogenElements = allElements.filter { element ->
-                    element.category == ElementCategory.HALOGEN
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(halogenElements)
-                tvSearchQuery.text = "\"Halogens\""
-            }
-            "alkali metal" -> {
-                val alkaliElements = allElements.filter { element ->
-                    element.category == ElementCategory.ALKALI_METAL
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(alkaliElements)
-                tvSearchQuery.text = "\"Alkali Metals\""
-            }
-            "alkaline earth metal" -> {
-                val alkalineElements = allElements.filter { element ->
-                    element.category == ElementCategory.ALKALINE_EARTH_METAL
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(alkalineElements)
-                tvSearchQuery.text = "\"Alkaline Earth Metals\""
-            }
-            "transition metal" -> {
-                val transitionElements = allElements.filter { element ->
-                    element.category == ElementCategory.TRANSITION_METAL
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(transitionElements)
-                tvSearchQuery.text = "\"Transition Metals\""
-            }
-            "post transition metal" -> {
-                val postTransitionElements = allElements.filter { element ->
-                    element.category == ElementCategory.POST_TRANSITION_METAL
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(postTransitionElements)
-                tvSearchQuery.text = "\"Post-Transition Metals\""
-            }
-            "metalloid" -> {
-                val metalloidElements = allElements.filter { element ->
-                    element.category == ElementCategory.METALLOID
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(metalloidElements)
-                tvSearchQuery.text = "\"Metalloids\""
-            }
-            "lanthanide" -> {
-                val lanthanideElements = allElements.filter { element ->
-                    element.category == ElementCategory.LANTHANIDE
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(lanthanideElements)
-                tvSearchQuery.text = "\"Lanthanides\""
-            }
-            "actinide" -> {
-                val actinideElements = allElements.filter { element ->
-                    element.category == ElementCategory.ACTINIDE
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(actinideElements)
-                tvSearchQuery.text = "\"Actinides\""
-            }
-            "rare earth metal", "rare earth metals", "rare earth" -> {
-                val rareEarthElements = allElements.filter { element ->
-                    element.category == ElementCategory.LANTHANIDE ||
-                    element.category == ElementCategory.ACTINIDE
-                }.sortedBy { it.atomicNumber }
-                
-                searchResults.addAll(rareEarthElements)
-                tvSearchQuery.text = "\"Rare Earth Metals\""
-            }
-            else -> {
-                // Regular search by name, symbol or atomic number
-                val matchByNameOrSymbol = allElements.filter { element ->
-                    element.name.contains(query, ignoreCase = true) ||
-                    element.symbol.contains(query, ignoreCase = true) ||
-                    element.atomicNumber.toString() == query
-                }.sortedBy { it.atomicNumber }
-                
-                if (matchByNameOrSymbol.isNotEmpty()) {
-                    searchResults.addAll(matchByNameOrSymbol)
-                } else {
-
-                    val categoriesMap = mapOf(
-                        "alkali" to ElementCategory.ALKALI_METAL,
-                        "alkaline" to ElementCategory.ALKALINE_EARTH_METAL,
-                        "transition" to ElementCategory.TRANSITION_METAL,
-                        "post transition" to ElementCategory.POST_TRANSITION_METAL,
-                        "post-transition" to ElementCategory.POST_TRANSITION_METAL,
-                        "metalloid" to ElementCategory.METALLOID,
-                        "nonmetal" to listOf(ElementCategory.NONMETAL, ElementCategory.HALOGEN, ElementCategory.NOBLE_GAS),
-                        "other nonmetal" to ElementCategory.NONMETAL,
-                        "halogen" to ElementCategory.HALOGEN,
-                        "noble" to ElementCategory.NOBLE_GAS,
-                        "lanthanide" to ElementCategory.LANTHANIDE,
-                        "actinide" to ElementCategory.ACTINIDE,
-                        "rare earth" to listOf(ElementCategory.LANTHANIDE, ElementCategory.ACTINIDE)
-                    )
-                    
-                    // Try to find a matching category
-                    val matchedCategory = categoriesMap.entries.firstOrNull { 
-                        searchTermLower.contains(it.key) || it.key.contains(searchTermLower)
-                    }
-                    
-                    if (matchedCategory != null) {
-                        val categoryValue = matchedCategory.value
-                        val categoryElements = if (categoryValue is List<*>) {
-                            // Handle the rare earth metals case (lanthanides and actinides)
-                            @Suppress("UNCHECKED_CAST")
-                            val categories = categoryValue as List<ElementCategory>
-                            allElements.filter { element ->
-                                categories.contains(element.category)
-                            }
-                        } else {
-                            // Handle normal categories
-                            @Suppress("UNCHECKED_CAST")
-                            allElements.filter { element ->
-                                element.category == categoryValue as ElementCategory
-                            }
-                        }.sortedBy { it.atomicNumber }
-                        
-                        searchResults.addAll(categoryElements)
-
-                        val displayName = when(matchedCategory.key) {
-                            "rare earth" -> "Rare Earth Metals"
-                            "post transition", "post-transition" -> "Post-Transition Metals"
-                            "nonmetal" -> "Nonmetals"
-                            "other nonmetal" -> "Other Nonmetals"
-                            else -> {
-                                val categoryName = when (categoryValue) {
-                                    is List<*> -> "Various Categories"
-                                    else -> (categoryValue as ElementCategory).name
-                                }
-                                
-                                categoryName.replace("_", " ")
-                                    .lowercase().split(" ")
-                                    .joinToString(" ") { word -> 
-                                        word.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
-                                    }
-                            }
-                        }
-                        
-                        tvSearchQuery.text = "\"$displayName\""
-                    }
-                }
-            }
-        }
-        
+        // ✅ Hook custom adapter with "+ Favorite" button
+        lvSearchResults.adapter = SearchResultsAdapter(searchResults)
 
         val resultsText = when (searchResults.size) {
             0 -> "No results found"
@@ -279,7 +44,70 @@ class SearchResultsActivity : Activity() {
         }
         tvResultsCount.text = resultsText
     }
-    
+
+    override fun onBackPressed() {
+        finish()
+    }
+
+    // ✅ Custom Adapter Class
+    inner class SearchResultsAdapter(private val elements: List<Element>) :
+        ArrayAdapter<Element>(this@SearchResultsActivity, R.layout.search_result_item, elements) {
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val view = convertView ?: layoutInflater.inflate(R.layout.search_result_item, parent, false)
+            val element = elements[position]
+
+            val text = view.findViewById<TextView>(R.id.text_element_info)
+            val btnAdd = view.findViewById<Button>(R.id.button_add_favorite)
+
+            text.text = "${element.name} (${element.symbol}) - Atomic Number: ${element.atomicNumber}"
+
+            btnAdd.setOnClickListener {
+                saveToFavorites(element)
+                Toast.makeText(
+                    this@SearchResultsActivity,
+                    "${element.name} added to favorites!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            return view
+        }
+    }
+
+    // ✅ Save favorite using SharedPreferences (simple key-value format)
+    private fun saveToFavorites(element: Element) {
+        val sharedPref = getSharedPreferences("Favorites", Context.MODE_PRIVATE)
+        val count = sharedPref.getInt("count", 0)
+
+        for (i in 0 until count) {
+            if (sharedPref.getString("name_$i", "") == element.name) return
+        }
+
+        with(sharedPref.edit()) {
+            putString("name_$count", element.name)
+            putString("symbol_$count", element.symbol)
+            putInt("number_$count", element.atomicNumber)
+            putString("category_$count", element.category.name)
+            putInt("count", count + 1)
+            apply()
+        }
+    }
+
+    private fun searchElements(query: String) {
+        searchResults.clear()
+
+        val allElements = getAllElements()
+        val term = query.trim().lowercase()
+
+        searchResults.addAll(
+            allElements.filter {
+                it.name.lowercase().contains(term) ||
+                        it.symbol.lowercase().contains(term) ||
+                        it.atomicNumber.toString() == term
+            }
+        )
+    }
     private fun getAllElements(): List<Element> {
         return listOf(
             // Period 1
