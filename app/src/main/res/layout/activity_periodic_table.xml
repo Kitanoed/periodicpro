@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#212121"
     android:padding="8dp">
 
-    <!-- Top App Bar with Categories Dropdown -->
+    <!-- Top App Bar with Back, Title, and Categories -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:paddingVertical="10dp">
 
+        <!-- Back Button -->
         <ImageView
+            android:id="@+id/btn_back_table"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="Logo"
-            android:src="@drawable/logo" />
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back"
+            android:clickable="true"
+            android:focusable="true" />
 
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,6 +35,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <!-- Spacer -->
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -48,7 +55,7 @@
             android:textAllCaps="false" />
     </LinearLayout>
 
-    <!-- Sample Categories Hint -->
+    <!-- Legend Preview -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,9 +71,9 @@
             android:layout_height="wrap_content"
             android:text="Categories: "
             android:textColor="#fcfcfc"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
-        <!-- Sample color indicators -->
+        <!-- Color Preview Circles -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,46 +81,32 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+            <View android:layout_width="12dp" android:layout_height="12dp"
                 android:background="@drawable/rounded_alkali_metal_bg"
-                android:layout_marginEnd="2dp"/>
-
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_marginEnd="2dp" />
+            <View android:layout_width="12dp" android:layout_height="12dp"
                 android:background="@drawable/rounded_nonmetal_bg"
-                android:layout_marginEnd="2dp"/>
-
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_marginEnd="2dp" />
+            <View android:layout_width="12dp" android:layout_height="12dp"
                 android:background="@drawable/rounded_transition_bg"
-                android:layout_marginEnd="2dp"/>
-
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_marginEnd="2dp" />
+            <View android:layout_width="12dp" android:layout_height="12dp"
                 android:background="@drawable/rounded_noble_gas_bg"
-                android:layout_marginEnd="2dp"/>
-
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_marginEnd="2dp" />
+            <View android:layout_width="12dp" android:layout_height="12dp"
                 android:background="@drawable/rounded_metalloid_bg"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="..."
                 android:textColor="#fcfcfc"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Periodic Table Grid in ScrollView -->
+    <!-- Periodic Table Scrollable Grid -->
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -136,7 +129,6 @@
                 android:rowCount="9"
                 android:padding="8dp"
                 android:useDefaultMargins="true" />
-
         </ScrollView>
     </HorizontalScrollView>
-</LinearLayout> 
+</LinearLayout>

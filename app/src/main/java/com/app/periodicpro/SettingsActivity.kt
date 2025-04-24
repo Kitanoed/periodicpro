@@ -4,8 +4,8 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 
 class SettingsActivity : Activity() {
@@ -13,34 +13,24 @@ class SettingsActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val button_developer = findViewById<Button>(R.id.button_developer)
-        button_developer.setOnClickListener {
-            Log.e("PeriodicPro Project", "Developer Button clicked!")
-
-            val intent = Intent(this, DeveloperActivity::class.java)
-            startActivity(intent)
+        val btnBack = findViewById<ImageView>(R.id.btn_back)
+        btnBack.setOnClickListener {
+            finish()
         }
 
-        val button_help = findViewById<Button>(R.id.button_help)
-        button_help.setOnClickListener {
-            Log.e("PeriodicPro Project", "Help Button clicked!")
-
-            val intent = Intent(this, HelpActivity::class.java)
-            startActivity(intent)
+        findViewById<Button>(R.id.button_developer).setOnClickListener {
+            startActivity(Intent(this, DeveloperActivity::class.java))
         }
 
-        val button_privacy = findViewById<Button>(R.id.button_privacy)
-        button_privacy.setOnClickListener {
-            Log.e("PeriodicPro Project", "Privacy Button clicked!")
-
-            val intent = Intent(this, PrivacyPolicyActivity::class.java)
-            startActivity(intent)
+        findViewById<Button>(R.id.button_help).setOnClickListener {
+            startActivity(Intent(this, HelpActivity::class.java))
         }
 
-        val button_logout = findViewById<Button>(R.id.button_logout)
-        button_logout.setOnClickListener {
-            Log.e("PeriodicPro Project", "Logout Button clicked!")
+        findViewById<Button>(R.id.button_privacy).setOnClickListener {
+            startActivity(Intent(this, PrivacyPolicyActivity::class.java))
+        }
 
+        findViewById<Button>(R.id.button_logout).setOnClickListener {
             showLogoutConfirmation()
         }
     }
@@ -51,7 +41,6 @@ class SettingsActivity : Activity() {
             .setMessage("Are you sure you want to log out of your account?")
             .setPositiveButton("Logout") { _, _ ->
                 Toast.makeText(this, "Logged out successfully!", Toast.LENGTH_SHORT).show()
-
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
