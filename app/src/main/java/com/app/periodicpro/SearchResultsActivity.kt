@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.*
 import com.app.periodicpro.data.Element
 import com.app.periodicpro.data.ElementCategory
+import org.json.JSONArray
+import org.json.JSONObject
 
 class SearchResultsActivity : Activity() {
     private lateinit var lvSearchResults: ListView
@@ -34,7 +36,7 @@ class SearchResultsActivity : Activity() {
 
         searchElements(searchQuery)
 
-        // ✅ Hook custom adapter with "+ Favorite" button
+
         lvSearchResults.adapter = SearchResultsAdapter(searchResults)
 
         val resultsText = when (searchResults.size) {
@@ -49,7 +51,7 @@ class SearchResultsActivity : Activity() {
         finish()
     }
 
-    // ✅ Custom Adapter Class
+
     inner class SearchResultsAdapter(private val elements: List<Element>) :
         ArrayAdapter<Element>(this@SearchResultsActivity, R.layout.search_result_item, elements) {
 
@@ -75,7 +77,7 @@ class SearchResultsActivity : Activity() {
         }
     }
 
-    // ✅ Save favorite using SharedPreferences (simple key-value format)
+
     private fun saveToFavorites(element: Element) {
         val sharedPref = getSharedPreferences("Favorites", Context.MODE_PRIVATE)
         val count = sharedPref.getInt("count", 0)
@@ -108,12 +110,40 @@ class SearchResultsActivity : Activity() {
             }
         )
     }
+
+    private fun saveToRecent(element: Element) {
+        val prefs = getSharedPreferences("RecentElements", MODE_PRIVATE)
+        val listJson = JSONArray(prefs.getString("recent", "[]"))
+        val newObj = JSONObject().apply {
+            put("name", element.name)
+            put("symbol", element.symbol)
+            put("number", element.atomicNumber)
+        }
+
+        // Remove duplicates
+        val updated = JSONArray()
+        updated.put(newObj)
+        for (i in 0 until listJson.length()) {
+            val item = listJson.getJSONObject(i)
+            if (item.getString("name") != element.name) {
+                updated.put(item)
+            }
+        }
+
+        // Cap at 5 elements
+        while (updated.length() > 5) {
+            (updated as JSONArray).remove(updated.length() - 1)
+        }
+
+        prefs.edit().putString("recent", updated.toString()).apply()
+    }
+
     private fun getAllElements(): List<Element> {
         return listOf(
             // Period 1
             Element(1, "H", "Hydrogen", 1, 1, ElementCategory.NONMETAL),
             Element(2, "He", "Helium", 1, 18, ElementCategory.NOBLE_GAS),
-            
+
             // Period 2
             Element(3, "Li", "Lithium", 2, 1, ElementCategory.ALKALI_METAL),
             Element(4, "Be", "Beryllium", 2, 2, ElementCategory.ALKALINE_EARTH_METAL),
@@ -123,7 +153,7 @@ class SearchResultsActivity : Activity() {
             Element(8, "O", "Oxygen", 2, 16, ElementCategory.NONMETAL),
             Element(9, "F", "Fluorine", 2, 17, ElementCategory.HALOGEN),
             Element(10, "Ne", "Neon", 2, 18, ElementCategory.NOBLE_GAS),
-            
+
             // Period 3
             Element(11, "Na", "Sodium", 3, 1, ElementCategory.ALKALI_METAL),
             Element(12, "Mg", "Magnesium", 3, 2, ElementCategory.ALKALINE_EARTH_METAL),
@@ -133,7 +163,7 @@ class SearchResultsActivity : Activity() {
             Element(16, "S", "Sulfur", 3, 16, ElementCategory.NONMETAL),
             Element(17, "Cl", "Chlorine", 3, 17, ElementCategory.HALOGEN),
             Element(18, "Ar", "Argon", 3, 18, ElementCategory.NOBLE_GAS),
-            
+
             // Period 4
             Element(19, "K", "Potassium", 4, 1, ElementCategory.ALKALI_METAL),
             Element(20, "Ca", "Calcium", 4, 2, ElementCategory.ALKALINE_EARTH_METAL),
@@ -153,7 +183,7 @@ class SearchResultsActivity : Activity() {
             Element(34, "Se", "Selenium", 4, 16, ElementCategory.NONMETAL),
             Element(35, "Br", "Bromine", 4, 17, ElementCategory.HALOGEN),
             Element(36, "Kr", "Krypton", 4, 18, ElementCategory.NOBLE_GAS),
-            
+
             // Period 5
             Element(37, "Rb", "Rubidium", 5, 1, ElementCategory.ALKALI_METAL),
             Element(38, "Sr", "Strontium", 5, 2, ElementCategory.ALKALINE_EARTH_METAL),
@@ -173,11 +203,11 @@ class SearchResultsActivity : Activity() {
             Element(52, "Te", "Tellurium", 5, 16, ElementCategory.METALLOID),
             Element(53, "I", "Iodine", 5, 17, ElementCategory.HALOGEN),
             Element(54, "Xe", "Xenon", 5, 18, ElementCategory.NOBLE_GAS),
-            
+
             // Period 6
             Element(55, "Cs", "Cesium", 6, 1, ElementCategory.ALKALI_METAL),
             Element(56, "Ba", "Barium", 6, 2, ElementCategory.ALKALINE_EARTH_METAL),
-            
+
             // Lanthanides (Period 6)
             Element(57, "La", "Lanthanum", 6, 3, ElementCategory.LANTHANIDE),
             Element(58, "Ce", "Cerium", 8, 4, ElementCategory.LANTHANIDE),
@@ -194,7 +224,7 @@ class SearchResultsActivity : Activity() {
             Element(69, "Tm", "Thulium", 8, 15, ElementCategory.LANTHANIDE),
             Element(70, "Yb", "Ytterbium", 8, 16, ElementCategory.LANTHANIDE),
             Element(71, "Lu", "Lutetium", 8, 17, ElementCategory.LANTHANIDE),
-            
+
             // Period 6 (continued)
             Element(72, "Hf", "Hafnium", 6, 4, ElementCategory.TRANSITION_METAL),
             Element(73, "Ta", "Tantalum", 6, 5, ElementCategory.TRANSITION_METAL),
@@ -211,11 +241,11 @@ class SearchResultsActivity : Activity() {
             Element(84, "Po", "Polonium", 6, 16, ElementCategory.POST_TRANSITION_METAL),
             Element(85, "At", "Astatine", 6, 17, ElementCategory.HALOGEN),
             Element(86, "Rn", "Radon", 6, 18, ElementCategory.NOBLE_GAS),
-            
+
             // Period 7
             Element(87, "Fr", "Francium", 7, 1, ElementCategory.ALKALI_METAL),
             Element(88, "Ra", "Radium", 7, 2, ElementCategory.ALKALINE_EARTH_METAL),
-            
+
             // Actinides (Period 7)
             Element(89, "Ac", "Actinium", 7, 3, ElementCategory.ACTINIDE),
             Element(90, "Th", "Thorium", 9, 4, ElementCategory.ACTINIDE),
@@ -232,7 +262,7 @@ class SearchResultsActivity : Activity() {
             Element(101, "Md", "Mendelevium", 9, 15, ElementCategory.ACTINIDE),
             Element(102, "No", "Nobelium", 9, 16, ElementCategory.ACTINIDE),
             Element(103, "Lr", "Lawrencium", 9, 17, ElementCategory.ACTINIDE),
-            
+
             // Period 7 (continued)
             Element(104, "Rf", "Rutherfordium", 7, 4, ElementCategory.TRANSITION_METAL),
             Element(105, "Db", "Dubnium", 7, 5, ElementCategory.TRANSITION_METAL),
@@ -251,4 +281,4 @@ class SearchResultsActivity : Activity() {
             Element(118, "Og", "Oganesson", 7, 18, ElementCategory.NOBLE_GAS)
         )
     }
-} 
+}

@@ -1,202 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#212121"
     android:padding="16dp">
 
-    <!-- Content Container -->
+    <!-- Welcome Message -->
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to PeriodicPro"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/text_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your interactive periodic table companion"
+        android:textColor="#bbbbbb"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Search Box -->
     <LinearLayout
-        android:id="@+id/content_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/navigation_container"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_table_bg"
+        android:padding="8dp"
+        android:layout_marginBottom="12dp">
 
-        <!-- Top App Bar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingVertical="10dp">
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="#ffffff"
+            android:layout_marginEnd="8dp"/>
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Logo"
-                android:src="@drawable/logo" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PeriodicPro"
-                android:textColor="#fcfcfc"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <!-- Welcome Message -->
-        <TextView
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/edittext_search"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Welcome to PeriodicPro"
-            android:textColor="#fcfcfc"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="12dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your interactive periodic table companion"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:textColor="#fcfcfc"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- Search Bar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_form_bg"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/search_icon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_search"
-                android:contentDescription="Search Icon"
-                android:layout_marginEnd="8dp"/>
-
-            <EditText
-                android:id="@+id/edittext_search"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Search elements..."
-                android:textSize="14sp"
-                android:background="@null"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#9CA3AF"/>
-        </LinearLayout>
-
-        <!-- Buttons Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="20dp">
-
-            <Button
-                android:id="@+id/button_pTable"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="90dp"
-                android:background="@drawable/rounded_form_bg"
-                android:text="Periodic Table"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#fcfcfc"
-                android:drawableTop="@drawable/ic_table"
-                android:gravity="center"
-                android:padding="12dp"
-                android:layout_marginEnd="8dp"/>
-
-            <Button
-                android:id="@+id/button_favorites"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="90dp"
-                android:background="@drawable/rounded_form_bg"
-                android:text="Favorites"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#fcfcfc"
-                android:drawableTop="@drawable/ic_favorite"
-                android:gravity="center"
-                android:padding="12dp"/>
-        </LinearLayout>
-
-
-        <!-- Recent Elements Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recent Elements"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#fcfcfc"
-            android:layout_marginBottom="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="84dp"
-            android:background="@drawable/rounded_form_bg"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Hydrogen -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/rounded_card_bg"
-                    android:gravity="center"
-                    android:text="H"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hydrogen"
-                        android:textColor="#fcfcfc"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Atomic number: 1"
-                        android:textColor="#fcfcfc"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_weight="1"
+            android:hint="Search elements..."
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#999999"
+            android:background="@android:color/transparent"/>
     </LinearLayout>
 
-    <!-- Navigation Fragment Container -->
+    <!-- Navigation Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/button_pTable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PERIODIC TABLE"
+            android:background="@drawable/categories_button_bg"
+            android:textColor="#ffffff"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/button_favorites"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="FAVORITES"
+            android:background="@drawable/categories_button_bg"
+            android:textColor="#ffffff"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/text_recent_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Elements"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Recent List Container -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/recent_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <!-- Navigation Fragment Placeholder -->
     <FrameLayout
         android:id="@+id/navigation_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp" />
-</RelativeLayout>
+        android:layout_marginTop="8dp"/>
+</LinearLayout>
