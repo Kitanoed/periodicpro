@@ -3,7 +3,6 @@ package com.app.periodicpro
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -13,31 +12,25 @@ class LoginActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val edittext_username = findViewById<EditText>(R.id.edittext_username)
-        val edittext_password = findViewById<EditText>(R.id.edittext_password)
-        val button_login = findViewById<TextView>(R.id.button_login)
-        val button_register = findViewById<TextView>(R.id.button_register)
+        val edittextUsername = findViewById<EditText>(R.id.edittext_username)
+        val edittextPassword = findViewById<EditText>(R.id.edittext_password)
+        val buttonLogin = findViewById<TextView>(R.id.button_login)
+        val buttonRegister = findViewById<TextView>(R.id.button_register)
 
-        intent?.let {
-            it.getStringExtra("username")?.let {username ->
-                edittext_username.setText(username)
-            }
+        buttonLogin.setOnClickListener {
+            val enteredUsername = edittextUsername.text.toString()
+            val enteredPassword = edittextPassword.text.toString()
 
-            it.getStringExtra("password")?.let {password ->
-                edittext_password.setText(password)
-            }
-        }
-
-        button_login.setOnClickListener {
-            val username = edittext_username.text.toString()
-            val password = edittext_password.text.toString()
-
-            if (username.isNullOrEmpty() || password.isNullOrEmpty()) {
+            if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
                 Toast.makeText(this, "Username and Password cannot be empty!", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            if (username.contains("@") && password == "456") {
+            val sharedPref = getSharedPreferences("UserCredentials", MODE_PRIVATE)
+            val savedUsername = sharedPref.getString("savedUsername", null)
+            val savedPassword = sharedPref.getString("savedPassword", null)
+
+            if (enteredUsername == savedUsername && enteredPassword == savedPassword) {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LandingActivity::class.java)
                 startActivity(intent)
@@ -47,9 +40,7 @@ class LoginActivity : Activity() {
             }
         }
 
-        button_register.setOnClickListener {
-            Log.e("PeriodicPro Project", "Register button clicked!")
-            Toast.makeText(this, "Opening register screen!", Toast.LENGTH_LONG).show()
+        buttonRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

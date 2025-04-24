@@ -105,40 +105,6 @@
                 android:textColor="#d3d3d3"
                 android:textSize="14sp"
                 android:paddingTop="10dp" />
-
-            <!-- Andrei Links -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:layout_gravity="center_horizontal">
-
-                <ImageView
-                    android:id="@+id/andrei_ig"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_instagram"
-                    android:layout_marginHorizontal="8dp"
-                    android:contentDescription="Andrei Instagram" />
-
-                <ImageView
-                    android:id="@+id/andrei_fb"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_facebook"
-                    android:layout_marginHorizontal="8dp"
-                    android:contentDescription="Andrei Facebook" />
-
-                <ImageView
-                    android:id="@+id/andrei_github"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_github"
-                    android:layout_marginHorizontal="8dp"
-                    android:contentDescription="Andrei GitHub" />
-            </LinearLayout>
         </LinearLayout>
 
         <!-- Axcel Macansantos Profile -->
@@ -192,40 +158,6 @@
                 android:textColor="#d3d3d3"
                 android:textSize="14sp"
                 android:paddingTop="10dp" />
-
-            <!-- Axcel Links -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:layout_gravity="center_horizontal">
-
-                <ImageView
-                    android:id="@+id/axcel_ig"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_instagram"
-                    android:layout_marginHorizontal="8dp"
-                    android:contentDescription="Axcel Instagram" />
-
-                <ImageView
-                    android:id="@+id/axcel_fb"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_facebook"
-                    android:layout_marginHorizontal="8dp"
-                    android:contentDescription="Axcel Facebook" />
-
-                <ImageView
-                    android:id="@+id/axcel_github"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_github"
-                    android:layout_marginHorizontal="8dp"
-                    android:contentDescription="Axcel GitHub" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
