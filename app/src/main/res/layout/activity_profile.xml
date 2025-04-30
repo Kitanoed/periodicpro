@@ -1,84 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical"
-    android:background="#212121">
+    android:background="#212121"
+    android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/ic_profile"
-        android:layout_gravity="center"
-        android:contentDescription="Profile Image"/>
-
-    <EditText
-        android:id="@+id/etName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        android:enabled="false"
-        android:background="@drawable/rounded_form_bg"
-        android:padding="12dp"
-        android:layout_marginVertical="8dp"
-        android:textColor="#000000"
-        android:textColorHint="#888888"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:enabled="false"
-        android:background="@drawable/rounded_form_bg"
-        android:layout_marginBottom="8dp"
-        android:padding="12dp"
-        android:textColor="#000000"
-        android:textColorHint="#888888"/>
+        <!-- Profile Image (tappable to select new image) -->
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_profile"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_background"
+            android:clipToOutline="true"
+            android:contentDescription="Profile Picture"
+            android:padding="0dp" />
 
-    <EditText
-        android:id="@+id/etYear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Year (e.g., Second Year)"
-        android:layout_marginBottom="8dp"
-        android:enabled="false"
-        android:background="@drawable/rounded_form_bg"
-        android:padding="12dp"
-        android:textColor="#000000"
-        android:textColorHint="#888888"/>
+        <!-- Name Field -->
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_form_bg"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:layout_marginBottom="12dp" />
 
-    <EditText
-        android:id="@+id/etCourse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Course"
-        android:enabled="false"
-        android:background="@drawable/rounded_form_bg"
-        android:layout_marginBottom="8dp"
-        android:padding="12dp"
-        android:textColor="#000000"
-        android:textColorHint="#888888"/>
+        <!-- Email -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_form_bg"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:layout_marginBottom="12dp" />
 
-    <!-- Existing Edit Button -->
-    <Button
-        android:id="@+id/btnEdit"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_card_bg"
-        android:layout_gravity="center"
-        android:text="Edit"
-        android:layout_marginTop="20dp"/>
+        <!-- Year Level -->
+        <EditText
+            android:id="@+id/etYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Year Level"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_form_bg"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:layout_marginBottom="12dp" />
 
+        <!-- Course -->
+        <EditText
+            android:id="@+id/etCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Course"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_form_bg"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:layout_marginBottom="20dp" />
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_card_bg"
-        android:layout_gravity="center"
-        android:text="Back"
-        android:layout_marginTop="10dp"/>
-</LinearLayout>
+        <!-- Edit / Done Button -->
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Back -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:backgroundTint="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>
