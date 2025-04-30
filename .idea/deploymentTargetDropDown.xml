@@ -9,13 +9,13 @@
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\axcel\.android\avd\Nexus_5_API_35.avd" />
+                  <type value="SERIAL_NUMBER" />
+                  <value value="102632535B000379" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2025-04-30T18:31:16.105087600Z" />
+          <timeTargetWasSelectedWithDropDown value="2025-04-30T18:33:38.466180400Z" />
         </State>
       </entry>
     </value>
