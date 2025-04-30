@@ -80,17 +80,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Developer Information\nLearn more about the team and connect via Instagram, Facebook, and GitHub."
+            android:text="Developer Information\nLearn more about the team and their characteristics."
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:paddingBottom="16dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Need More Help?\nIf you encounter problems, restart the app or check your internet. Contact us via the Developers page for further support."
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:paddingBottom="32dp"/>
     </LinearLayout>
 </ScrollView>
