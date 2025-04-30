@@ -1,9 +1,9 @@
 package com.app.periodicpro
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -36,7 +36,6 @@ class SearchResultsActivity : Activity() {
 
         searchElements(searchQuery)
 
-
         lvSearchResults.adapter = SearchResultsAdapter(searchResults)
 
         val resultsText = when (searchResults.size) {
@@ -50,7 +49,6 @@ class SearchResultsActivity : Activity() {
     override fun onBackPressed() {
         finish()
     }
-
 
     inner class SearchResultsAdapter(private val elements: List<Element>) :
         ArrayAdapter<Element>(this@SearchResultsActivity, R.layout.search_result_item, elements) {
@@ -73,10 +71,34 @@ class SearchResultsActivity : Activity() {
                 ).show()
             }
 
+            // Click on item → show popup and save to recent
+            view.setOnClickListener {
+                showElementPopup(element)
+                saveToRecent(element)
+            }
+
             return view
         }
     }
 
+    private fun showElementPopup(element: Element) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.element_popup)
+        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+
+        dialog.findViewById<TextView>(R.id.popup_name).text = "${element.name} (${element.symbol})"
+        dialog.findViewById<TextView>(R.id.popup_atomic_number).text = "Atomic Number: ${element.atomicNumber}"
+        dialog.findViewById<TextView>(R.id.popup_row).text = "Row: ${element.row}"
+        dialog.findViewById<TextView>(R.id.popup_column).text = "Column: ${element.column}"
+        dialog.findViewById<TextView>(R.id.popup_category).text =
+            "Category: ${element.category.name.replace("_", " ").lowercase().replaceFirstChar { it.uppercase() }}"
+
+        dialog.findViewById<Button>(R.id.popup_close_button).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
 
     private fun saveToFavorites(element: Element) {
         val sharedPref = getSharedPreferences("Favorites", Context.MODE_PRIVATE)
@@ -96,9 +118,33 @@ class SearchResultsActivity : Activity() {
         }
     }
 
+    private fun saveToRecent(element: Element) {
+        val prefs = getSharedPreferences("RecentElements", MODE_PRIVATE)
+        val listJson = JSONArray(prefs.getString("recent", "[]"))
+        val newObj = JSONObject().apply {
+            put("name", element.name)
+            put("symbol", element.symbol)
+            put("number", element.atomicNumber)
+        }
+
+        val updated = JSONArray()
+        updated.put(newObj)
+        for (i in 0 until listJson.length()) {
+            val item = listJson.getJSONObject(i)
+            if (item.getString("name") != element.name) {
+                updated.put(item)
+            }
+        }
+
+        while (updated.length() > 5) {
+            updated.remove(updated.length() - 1)
+        }
+
+        prefs.edit().putString("recent", updated.toString()).apply()
+    }
+
     private fun searchElements(query: String) {
         searchResults.clear()
-
         val allElements = getAllElements()
         val term = query.trim().lowercase()
 
@@ -111,32 +157,6 @@ class SearchResultsActivity : Activity() {
         )
     }
 
-    private fun saveToRecent(element: Element) {
-        val prefs = getSharedPreferences("RecentElements", MODE_PRIVATE)
-        val listJson = JSONArray(prefs.getString("recent", "[]"))
-        val newObj = JSONObject().apply {
-            put("name", element.name)
-            put("symbol", element.symbol)
-            put("number", element.atomicNumber)
-        }
-
-        // Remove duplicates
-        val updated = JSONArray()
-        updated.put(newObj)
-        for (i in 0 until listJson.length()) {
-            val item = listJson.getJSONObject(i)
-            if (item.getString("name") != element.name) {
-                updated.put(item)
-            }
-        }
-
-        // Cap at 5 elements
-        while (updated.length() > 5) {
-            (updated as JSONArray).remove(updated.length() - 1)
-        }
-
-        prefs.edit().putString("recent", updated.toString()).apply()
-    }
 
     private fun getAllElements(): List<Element> {
         return listOf(

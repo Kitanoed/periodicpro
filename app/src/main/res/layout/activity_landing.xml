@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,7 @@
     android:background="#212121"
     android:padding="16dp">
 
-    <!-- Welcome Message -->
+    <!-- Welcome -->
     <TextView
         android:id="@+id/text_welcome"
         android:layout_width="wrap_content"
@@ -16,7 +17,7 @@
         android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/text_subtitle"
@@ -25,9 +26,9 @@
         android:text="Your interactive periodic table companion"
         android:textColor="#bbbbbb"
         android:textSize="14sp"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="12dp" />
 
-    <!-- Search Box -->
+    <!-- Search -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,19 +42,20 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/ic_menu_search"
-            android:tint="#ffffff"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            app:tint="#ffffff" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edittext_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Search elements..."
+            android:imeOptions="actionSearch"
             android:inputType="text"
             android:textColor="#ffffff"
             android:textColorHint="#999999"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent" />
     </LinearLayout>
 
     <!-- Navigation Buttons -->
@@ -72,7 +74,7 @@
             android:text="PERIODIC TABLE"
             android:background="@drawable/categories_button_bg"
             android:textColor="#ffffff"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/button_favorites"
@@ -82,7 +84,7 @@
             android:text="FAVORITES"
             android:background="@drawable/categories_button_bg"
             android:textColor="#ffffff"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
     <!-- Title -->
@@ -94,9 +96,9 @@
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp" />
 
-    <!-- Recent List Container -->
+    <!-- Recent List -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -110,10 +112,9 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <!-- Navigation Fragment Placeholder -->
+    <!-- Navigation placeholder -->
     <FrameLayout
         android:id="@+id/navigation_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

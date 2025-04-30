@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Role &amp; Experience:\nAs the Lead Developer, Andrei guides the technical direction of our projects with 2 years of full-stack experience. He is proficient in Java, Kotlin, and C."
+                android:text="Role &amp; Experience:\nAs the Lead Developer, Andrei guides the technical direction of the projects with 2 years of full-stack experience and is proficient in Java, Kotlin, and C."
                 android:textColor="#d3d3d3"
                 android:textSize="14sp"
                 android:paddingTop="10dp" />
@@ -164,7 +164,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Role &amp; Contribution:\nAxcel specializes in front-end development and ensures the app's UI/UX is intuitive and visually appealing. He has skills in Java, Kotlin, and C."
+                android:text="Role &amp; Contribution: Specializes in front-end development and ensures the app's UI/UX is intuitive or visually appealing and has experience in Java, Kotlin, and C."
                 android:textColor="#d3d3d3"
                 android:textSize="14sp"
                 android:paddingTop="10dp" />

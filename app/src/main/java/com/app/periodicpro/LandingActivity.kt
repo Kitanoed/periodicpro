@@ -2,14 +2,12 @@ package com.app.periodicpro
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import com.app.periodicpro.data.Element
-import com.app.periodicpro.data.ElementCategory
 import com.app.periodicpro.fragments.NavigationFragment
 import org.json.JSONArray
 import org.json.JSONObject
@@ -19,6 +17,7 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
     private var backPressedTime = 0L
     private lateinit var backToast: Toast
     private lateinit var listRecent: LinearLayout
+    private lateinit var searchBox: AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +29,32 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             .commit()
         navigationFragment.setOnNavigationItemSelectedListener(this)
 
-        val editTextSearch = findViewById<EditText>(R.id.edittext_search)
+        // Views
+        searchBox = findViewById(R.id.edittext_search)
         val searchIcon = findViewById<ImageView>(R.id.search_icon)
         val buttonTable = findViewById<Button>(R.id.button_pTable)
         val buttonFavorites = findViewById<Button>(R.id.button_favorites)
         listRecent = findViewById(R.id.recent_list)
+
+        // Dropdown suggestions
+        val elementNames = getAllElementNames()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, elementNames)
+        searchBox.setAdapter(adapter)
+
+        // Search by Enter key
+        searchBox.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
+            ) {
+                performSearch(view.text.toString())
+                true
+            } else false
+        }
+
+        // Search by icon click
+        searchIcon.setOnClickListener {
+            performSearch(searchBox.text.toString())
+        }
 
         buttonTable.setOnClickListener {
             startActivity(Intent(this, PeriodicTableActivity::class.java))
@@ -44,19 +64,13 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             startActivity(Intent(this, FavoritesActivity::class.java))
         }
 
-        editTextSearch.setOnEditorActionListener { textView, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-                (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
-            ) {
-                performSearch(textView.text.toString())
-                true
-            } else false
-        }
+        // Load recent elements initially
+        loadRecentElements()
+    }
 
-        searchIcon.setOnClickListener {
-            performSearch(editTextSearch.text.toString())
-        }
-
+    // 🔁 Reload recent elements every time user returns to this activity
+    override fun onResume() {
+        super.onResume()
         loadRecentElements()
     }
 
@@ -77,7 +91,11 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
         val json = prefs.getString("recent", "[]")
         val jsonArray = JSONArray(json)
 
-        for (i in 0 until jsonArray.length()) {
+
+        val limit = 5
+        val start = maxOf(0, jsonArray.length() - limit)
+
+        for (i in start until jsonArray.length()) {
             val obj = jsonArray.getJSONObject(i)
             val name = obj.getString("name")
             val symbol = obj.getString("symbol")
@@ -88,8 +106,51 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             view.findViewById<TextView>(R.id.recent_number).text = "Atomic number: $number"
             view.findViewById<TextView>(R.id.recent_symbol).text = symbol
 
+            view.setOnClickListener {
+                showElementPopup(name, symbol, number)
+            }
+
             listRecent.addView(view)
         }
+    }
+
+
+    private fun showElementPopup(name: String, symbol: String, number: Int) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.element_popup)
+        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+
+        dialog.findViewById<TextView>(R.id.popup_name).text = "$name ($symbol)"
+        dialog.findViewById<TextView>(R.id.popup_atomic_number).text = "Atomic Number: $number"
+        dialog.findViewById<TextView>(R.id.popup_row).text = "-"
+        dialog.findViewById<TextView>(R.id.popup_column).text = "-"
+        dialog.findViewById<TextView>(R.id.popup_category).text = "-"
+        dialog.findViewById<Button>(R.id.popup_close_button).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun getAllElementNames(): List<String> {
+        return listOf(
+            "Hydrogen", "Helium", "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen", "Oxygen",
+            "Fluorine", "Neon", "Sodium", "Magnesium", "Aluminum", "Silicon", "Phosphorus",
+            "Sulfur", "Chlorine", "Argon", "Potassium", "Calcium", "Scandium", "Titanium", "Vanadium",
+            "Chromium", "Manganese", "Iron", "Cobalt", "Nickel", "Copper", "Zinc", "Gallium", "Germanium",
+            "Arsenic", "Selenium", "Bromine", "Krypton", "Rubidium", "Strontium", "Yttrium", "Zirconium",
+            "Niobium", "Molybdenum", "Technetium", "Ruthenium", "Rhodium", "Palladium", "Silver",
+            "Cadmium", "Indium", "Tin", "Antimony", "Tellurium", "Iodine", "Xenon", "Cesium", "Barium",
+            "Lanthanum", "Cerium", "Praseodymium", "Neodymium", "Promethium", "Samarium", "Europium",
+            "Gadolinium", "Terbium", "Dysprosium", "Holmium", "Erbium", "Thulium", "Ytterbium",
+            "Lutetium", "Hafnium", "Tantalum", "Tungsten", "Rhenium", "Osmium", "Iridium", "Platinum",
+            "Gold", "Mercury", "Thallium", "Lead", "Bismuth", "Polonium", "Astatine", "Radon",
+            "Francium", "Radium", "Actinium", "Thorium", "Protactinium", "Uranium", "Neptunium",
+            "Plutonium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium", "Fermium",
+            "Mendelevium", "Nobelium", "Lawrencium", "Rutherfordium", "Dubnium", "Seaborgium",
+            "Bohrium", "Hassium", "Meitnerium", "Darmstadtium", "Roentgenium", "Copernicium",
+            "Nihonium", "Flerovium", "Moscovium", "Livermorium", "Tennessine", "Oganesson"
+        )
     }
 
     override fun onNavigationItemSelected(itemId: Int) {
