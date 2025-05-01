@@ -12,6 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.app.periodicpro.data.Element
 import com.app.periodicpro.data.ElementCategory
+import org.json.JSONArray
+import org.json.JSONObject
 
 class PeriodicTableActivity : Activity() {
     private lateinit var gridLayout: GridLayout
@@ -61,23 +63,46 @@ class PeriodicTableActivity : Activity() {
         dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
 
         val nameText = dialog.findViewById<TextView>(R.id.popup_name)
-        val atomicNumberText = dialog.findViewById<TextView>(R.id.popup_atomic_number)
-        val rowText = dialog.findViewById<TextView>(R.id.popup_row)
-        val columnText = dialog.findViewById<TextView>(R.id.popup_column)
-        val categoryText = dialog.findViewById<TextView>(R.id.popup_category)
-        val closeButton = dialog.findViewById<Button>(R.id.popup_close_button)
-
         nameText.text = "${element.name} (${element.symbol})"
-        atomicNumberText.text = "Atomic Number: ${element.atomicNumber}"
-        rowText.text = "Row: ${element.row}"
-        columnText.text = "Column: ${element.column}"
-        categoryText.text = "Category: ${element.category.name.replace("_", " ").lowercase().replaceFirstChar { it.uppercase() }}"
+        dialog.findViewById<TextView>(R.id.popup_atomic_number).text = "Atomic Number: ${element.atomicNumber}"
+        dialog.findViewById<TextView>(R.id.popup_row).text = "Row: ${element.row}"
+        dialog.findViewById<TextView>(R.id.popup_column).text = "Column: ${element.column}"
+        dialog.findViewById<TextView>(R.id.popup_category).text = 
+            "Category: ${element.category.name.replace("_", " ").lowercase().replaceFirstChar { it.uppercase() }}"
 
-        closeButton.setOnClickListener {
+        dialog.findViewById<Button>(R.id.popup_close_button).setOnClickListener {
             dialog.dismiss()
         }
 
+        // Save to recent when showing element details
+        saveToRecent(element)
+
         dialog.show()
+    }
+
+    private fun saveToRecent(element: Element) {
+        val prefs = getSharedPreferences("RecentElements", MODE_PRIVATE)
+        val listJson = JSONArray(prefs.getString("recent", "[]"))
+        val newObj = JSONObject().apply {
+            put("name", element.name)
+            put("symbol", element.symbol)
+            put("number", element.atomicNumber)
+        }
+
+        val updated = JSONArray()
+        updated.put(newObj)
+        for (i in 0 until listJson.length()) {
+            val item = listJson.getJSONObject(i)
+            if (item.getString("name") != element.name) {
+                updated.put(item)
+            }
+        }
+
+        while (updated.length() > 5) {
+            updated.remove(updated.length() - 1)
+        }
+
+        prefs.edit().putString("recent", updated.toString()).apply()
     }
 
     private fun setupPeriodicTable() {
