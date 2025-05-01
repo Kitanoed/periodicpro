@@ -8,34 +8,42 @@
     android:background="#212121"
     android:padding="16dp">
 
-    <!-- Welcome -->
-    <TextView
-        android:id="@+id/text_welcome"
-        android:layout_width="wrap_content"
+    <!-- Welcome Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to PeriodicPro"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="4dp" />
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+        
+        <TextView
+            android:id="@+id/text_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to PeriodicPro"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
 
-    <TextView
-        android:id="@+id/text_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your interactive periodic table companion"
-        android:textColor="#bbbbbb"
-        android:textSize="14sp"
-        android:layout_marginBottom="12dp" />
+        <TextView
+            android:id="@+id/text_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your interactive periodic table companion"
+            android:textColor="#bbbbbb"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <!-- Search -->
     <LinearLayout
+        android:id="@+id/search_bar_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/rounded_table_bg"
-        android:padding="8dp"
-        android:layout_marginBottom="12dp">
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp">
 
         <ImageView
             android:id="@+id/search_icon"
@@ -55,16 +63,18 @@
             android:inputType="text"
             android:textColor="#ffffff"
             android:textColorHint="#999999"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:textSize="16sp"
+            android:padding="4dp" />
     </LinearLayout>
 
-    <!-- Navigation Buttons -->
+    <!-- Navigation Buttons with improved design -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="20dp">
 
         <Button
             android:id="@+id/button_pTable"
@@ -74,7 +84,10 @@
             android:text="PERIODIC TABLE"
             android:background="@drawable/categories_button_bg"
             android:textColor="#ffffff"
-            android:layout_marginEnd="8dp" />
+            android:textSize="14sp"
+            android:paddingVertical="12dp"
+            android:layout_marginEnd="8dp"
+            android:elevation="4dp" />
 
         <Button
             android:id="@+id/button_favorites"
@@ -84,37 +97,76 @@
             android:text="FAVORITES"
             android:background="@drawable/categories_button_bg"
             android:textColor="#ffffff"
-            android:layout_marginStart="8dp" />
+            android:textSize="14sp"
+            android:paddingVertical="12dp"
+            android:layout_marginStart="8dp"
+            android:elevation="4dp" />
     </LinearLayout>
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/text_recent_title"
-        android:layout_width="wrap_content"
+    <!-- Recent Elements Section with Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Recent Elements"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+        
+        <TextView
+            android:id="@+id/text_recent_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Recent Elements"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+            
+        <TextView
+            android:id="@+id/text_view_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View All"
+            android:textColor="#00796B"
+            android:textSize="14sp"
+            android:padding="4dp" />
+    </LinearLayout>
 
-    <!-- Recent List -->
-    <ScrollView
+    <!-- Recent Elements List with card-like appearance -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:id="@+id/recent_list"
+        android:layout_weight="1">
+        
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/recent_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="8dp" />
+        </ScrollView>
+        
+        <!-- Empty state message for no recent elements -->
+        <TextView
+            android:id="@+id/text_no_recent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No recent elements yet.\nTap on any element to see it here!"
+            android:textColor="#999999"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="24dp"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <!-- Navigation placeholder -->
     <FrameLayout
         android:id="@+id/navigation_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

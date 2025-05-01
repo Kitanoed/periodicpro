@@ -54,9 +54,6 @@
         <activity
             android:name=".PeriodicTableActivity"
             android:exported="false" />
-        <activity
-            android:name=".SearchResultsActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

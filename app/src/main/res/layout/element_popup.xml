@@ -1,67 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="320dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="#212121"
+    android:background="@drawable/dialog_background"
     android:gravity="center_horizontal">
 
+    <!-- Top bar with element symbol and favorite icon -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+        
+        <!-- Element Symbol Header -->
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical">
+            
+            <TextView
+                android:id="@+id/popup_symbol"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_nonmetal_bg"
+                android:gravity="center"
+                android:text="H"
+                android:textColor="#000000"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+        
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+            
+        <!-- Favorite button -->
+        <ImageView
+            android:id="@+id/popup_add_favorites"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/btn_star_big_off"
+            android:layout_gravity="top"
+            app:tint="#FFD700"
+            android:contentDescription="Add to favorites"
+            android:padding="4dp" />
+    </LinearLayout>
+
+    <!-- Element Name -->
     <TextView
         android:id="@+id/popup_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Element Name (Symbol)"
         android:textColor="#FFFFFF"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
         android:paddingBottom="16dp"/>
 
-    <TextView
-        android:id="@+id/popup_atomic_number"
-        android:layout_width="wrap_content"
+    <!-- Property Cards -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Atomic Number: "
-        android:textColor="#CCCCCC"
-        android:textSize="16sp"
-        android:paddingBottom="8dp"/>
-
-    <TextView
-        android:id="@+id/popup_row"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Row: "
-        android:textColor="#CCCCCC"
-        android:textSize="16sp"
-        android:paddingBottom="8dp"/>
-
-    <TextView
-        android:id="@+id/popup_column"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Column: "
-        android:textColor="#CCCCCC"
-        android:textSize="16sp"
-        android:paddingBottom="8dp"/>
-
-    <TextView
-        android:id="@+id/popup_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category: "
-        android:textColor="#CCCCCC"
-        android:textSize="16sp"
-        android:paddingBottom="24dp"/>
-
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#2A2A2A"
+        app:cardElevation="2dp">
+        
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:stretchColumns="1">
+            
+            <!-- Atomic Number -->
+            <TableRow android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Atomic Number:"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"/>
+                    
+                <TextView
+                    android:id="@+id/popup_atomic_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </TableRow>
+            
+            <!-- Atomic Mass -->
+            <TableRow android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Atomic Weight:"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"/>
+                    
+                <TextView
+                    android:id="@+id/popup_atomic_mass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </TableRow>
+            
+            <!-- Row -->
+            <TableRow android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Row:"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"/>
+                    
+                <TextView
+                    android:id="@+id/popup_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </TableRow>
+            
+            <!-- Column -->
+            <TableRow android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Column:"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"/>
+                    
+                <TextView
+                    android:id="@+id/popup_column"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </TableRow>
+            
+            <!-- Category -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category:"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"/>
+                    
+                <TextView
+                    android:id="@+id/popup_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Transition metal"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </TableRow>
+        </TableLayout>
+    </androidx.cardview.widget.CardView>
+    
+    <!-- Close Button -->
     <Button
         android:id="@+id/popup_close_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CLOSE"
-        android:backgroundTint="#E85D04"
+        android:backgroundTint="#757575"
         android:textColor="#FFFFFF"
-        android:paddingHorizontal="24dp"/>
-
+        android:paddingHorizontal="16dp"/>
 </LinearLayout>

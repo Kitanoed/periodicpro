@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#2A2A2A"
+    android:elevation="8dp">
+
+    <!-- Search Results Count -->
+    <TextView
+        android:id="@+id/tv_popup_results_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0 results found"
+        android:textColor="#fcfcfc"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:background="#1A1A1A" />
+
+    <!-- Results List -->
+    <ListView
+        android:id="@+id/lv_popup_search_results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:maxHeight="300dp" />
+
+</LinearLayout> 

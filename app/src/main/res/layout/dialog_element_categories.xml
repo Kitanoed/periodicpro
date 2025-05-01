@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="320dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/rounded_dialog_bg"
@@ -21,105 +21,134 @@
         android:layout_height="wrap_content"
         android:columnCount="2"
         android:rowCount="5"
-        android:alignmentMode="alignMargins"
         android:useDefaultMargins="true">
 
+        <!-- Alkali Metals -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_alkali_metal_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/alkali_metal"
             android:text="Alkali Metals"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Alkaline Earth Metals -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_alkaline_earth_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/alkaline_earth_metal"
             android:text="Alkaline Earth Metals"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Transition Metals -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_transition_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/transition_metal"
             android:text="Transition Metals"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Post-Transition Metals -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_post_transition_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/post_transition_metal"
             android:text="Post-Transition Metals"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Metalloids -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_metalloid_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/metalloid"
             android:text="Metalloids"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Nonmetals -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_nonmetal_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/nonmetal"
             android:text="Nonmetals"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Halogens -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_halogen_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/halogen"
             android:text="Halogens"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Noble Gases -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_noble_gas_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/noble_gas"
             android:text="Noble Gases"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Lanthanides -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_lanthanide_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/lanthanide"
             android:text="Lanthanides"
             android:textColor="#000000"
             android:gravity="center"/>
 
+        <!-- Actinides -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
+            android:layout_margin="4dp"
             android:padding="8dp"
-            android:background="@drawable/rounded_actinide_bg"
+            android:background="@drawable/rounded_category_bg"
+            android:backgroundTint="@color/actinide"
             android:text="Actinides"
             android:textColor="#000000"
             android:gravity="center"/>
