@@ -34,10 +34,6 @@ class NavigationFragment : Fragment() {
             onNavigationItemSelectedListener?.onNavigationItemSelected(R.id.button_landing)
         }
 
-        view.findViewById<Button>(R.id.button_table).setOnClickListener {
-            onNavigationItemSelectedListener?.onNavigationItemSelected(R.id.button_table)
-        }
-
         view.findViewById<Button>(R.id.button_profile).setOnClickListener {
             onNavigationItemSelectedListener?.onNavigationItemSelected(R.id.button_profile)
         }

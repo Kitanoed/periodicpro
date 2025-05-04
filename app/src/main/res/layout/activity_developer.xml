@@ -1,174 +1,379 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
-    android:padding="16dp">
+    android:background="#121212"
+    android:fillViewport="true"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:padding="16dp">
 
-        <!-- Header -->
-        <LinearLayout
+        <!-- Top Bar with Back Button -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="12dp">
-            <ImageView
-                android:id="@+id/btn_back"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_back"
-                android:contentDescription="Back"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"/>
+            android:paddingVertical="8dp"
+            android:layout_marginBottom="16dp">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_code"
-                android:layout_marginEnd="8dp" />
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Developers"
-                android:textColor="#fcfcfc"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <!-- Meet the Team Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Meet the Team"
-            android:textColor="#fcfcfc"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
-
-        <!-- Team Introduction -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="We are a dedicated and enthusiastic team of student developers currently pursuing our Bachelor of Science in Information Technology. Hailing from section G6 of our second year, we are passionate about applying our growing knowledge to create impactful and engaging digital experiences."
-            android:textColor="#d3d3d3"
-            android:textSize="14sp"
-            android:paddingBottom="16dp" />
-
-        <!-- Andrei Sam Loy Profile -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_form_bg"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/profile2"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Andrei Sam Loy"
-                android:textColor="#fcfcfc"
-                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BSIT - 2nd Year / G6\nLead Developer / Full Stack"
-                android:textColor="#d3d3d3"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="&quot;The best way to predict the future is to invent it.&quot; - Alan Kay"
-                android:textColor="#fcfcfc"
-                android:textSize="14sp"
-                android:paddingTop="10dp"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Role &amp; Experience:\nAs the Lead Developer, Andrei guides the technical direction of the projects with 2 years of full-stack experience and is proficient in Java, Kotlin, and C."
-                android:textColor="#d3d3d3"
-                android:textSize="14sp"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-        <!-- Axcel Macansantos Profile -->
-        <LinearLayout
+        <!-- Team Introduction Card -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_form_bg"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#1F1F1F"
+            app:cardElevation="4dp">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/profile1"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Axcel Macansantos"
-                android:textColor="#fcfcfc"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BSIT - 2nd Year / G6\nAssistant Developer / UI-UX Focus"
-                android:textColor="#d3d3d3"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="&quot;It's not a bug, it's an undocumented feature.&quot; - Anonymous"
-                android:textColor="#fcfcfc"
-                android:textSize="14sp"
-                android:paddingTop="10dp"
-                android:gravity="center_horizontal" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Meet the Team"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="We are a dedicated and enthusiastic team of student developers currently pursuing our Bachelor of Science in Information Technology. Hailing from section G6 of our second year, we are passionate about applying our growing knowledge to create impactful and engaging digital experiences."
+                    android:textColor="#9E9E9E"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Andrei Sam Loy Profile Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#1F1F1F"
+            app:cardElevation="4dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Role &amp; Contribution: Specializes in front-end development and ensures the app's UI/UX is intuitive or visually appealing and has experience in Java, Kotlin, and C."
-                android:textColor="#d3d3d3"
-                android:textSize="14sp"
-                android:paddingTop="10dp" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:padding="16dp">
 
+                <!-- Developer Image -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/profile2"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Developer Photo" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Andrei Sam Loy"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BSIT - 2nd Year"
+                    android:textColor="#9E9E9E"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="Student Developer"
+                    android:textColor="#8C9EFF"
+                    android:textSize="14sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="#2A2A2A"
+                    app:cardElevation="0dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="&quot;The best way to predict the future is to invent it.&quot; - Alan Kay"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
+                        android:gravity="center"
+                        android:padding="12dp" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Role &amp; Experience:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="As a passionate student developer, Andrei is actively building skills in full-stack development with hands-on experience in Java, Kotlin, and C."
+                    android:textColor="#9E9E9E"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_github1"
+                        android:layout_width="55dp"
+                        android:layout_height="48dp"
+                        app:icon="@android:drawable/ic_menu_share"
+                        app:iconTint="#FFFFFF"
+                        app:backgroundTint="#424242"
+                        app:cornerRadius="24dp"
+                        android:layout_marginHorizontal="8dp"
+                        style="@style/Widget.MaterialComponents.Button.Icon" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_linkedin1"
+                        android:layout_width="55dp"
+                        android:layout_height="48dp"
+                        app:icon="@android:drawable/ic_dialog_email"
+                        app:iconTint="#FFFFFF"
+                        app:backgroundTint="#424242"
+                        app:cornerRadius="24dp"
+                        android:layout_marginHorizontal="8dp"
+                        style="@style/Widget.MaterialComponents.Button.Icon" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Axcel Macansantos Profile Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#1F1F1F"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Developer Image -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/profile1"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Developer Photo" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Axcel Macansantos"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BSIT - 2nd Year"
+                    android:textColor="#9E9E9E"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student aDeveloper"
+                    android:textColor="#8C9EFF"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="12dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="#2A2A2A"
+                    app:cardElevation="0dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="&quot;It's not a bug, it's an undocumented feature.&quot; - Anonymous"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
+                        android:gravity="center"
+                        android:padding="12dp" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Role &amp; Contribution:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Specializes in front-end development and ensures the app's UI/UX is intuitive and visually appealing. Has experience in Java, Kotlin, and C."
+                    android:textColor="#9E9E9E"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_github2"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:layout_width="55dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="8dp"
+                        app:backgroundTint="#424242"
+                        app:cornerRadius="24dp"
+                        app:icon="@android:drawable/ic_menu_share"
+                        app:iconTint="#FFFFFF" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_linkedin2"
+                        android:layout_width="55dp"
+                        android:layout_height="48dp"
+                        app:icon="@android:drawable/ic_dialog_email"
+                        app:iconTint="#FFFFFF"
+                        app:backgroundTint="#424242"
+                        app:cornerRadius="24dp"
+                        android:layout_marginHorizontal="8dp"
+                        style="@style/Widget.MaterialComponents.Button.Icon" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- App Version Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#1F1F1F"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PeriodicPro"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Version 1.0.0"
+                    android:textColor="#9E9E9E"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="© 2025 PeriodicPro Team"
+                    android:textColor="#9E9E9E"
+                    android:textSize="12sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>

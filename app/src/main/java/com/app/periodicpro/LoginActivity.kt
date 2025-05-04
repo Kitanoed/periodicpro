@@ -3,18 +3,19 @@ package com.app.periodicpro
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val edittextUsername = findViewById<EditText>(R.id.edittext_username)
-        val edittextPassword = findViewById<EditText>(R.id.edittext_password)
-        val buttonLogin = findViewById<TextView>(R.id.button_login)
+        val edittextUsername = findViewById<TextInputEditText>(R.id.edittext_username)
+        val edittextPassword = findViewById<TextInputEditText>(R.id.edittext_password)
+        val buttonLogin = findViewById<MaterialButton>(R.id.button_login)
         val buttonRegister = findViewById<TextView>(R.id.button_register)
 
         buttonLogin.setOnClickListener {

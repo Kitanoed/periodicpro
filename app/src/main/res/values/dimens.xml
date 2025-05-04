@@ -2,4 +2,5 @@
 <resources>
     <dimen name="element_card_width">60dp</dimen>
     <dimen name="element_card_height">60dp</dimen>
+    <dimen name="keyboard_padding">140dp</dimen>
 </resources> 

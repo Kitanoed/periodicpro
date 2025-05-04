@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#2A2A2A"
-    android:elevation="8dp">
+    app:cardCornerRadius="12dp"
+    app:cardBackgroundColor="#1F1F1F"
+    app:cardElevation="4dp">
 
-    <!-- Search Results Count -->
-    <TextView
-        android:id="@+id/tv_popup_results_count"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0 results found"
-        android:textColor="#fcfcfc"
-        android:textSize="14sp"
-        android:padding="8dp"
-        android:background="#1A1A1A" />
+        android:orientation="vertical">
 
-    <!-- Results List -->
-    <ListView
-        android:id="@+id/lv_popup_search_results"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:maxHeight="300dp" />
+        <!-- Search Results Count -->
+        <TextView
+            android:id="@+id/tv_popup_results_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 results found"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:background="#2A2A2A" />
 
-</LinearLayout> 
+        <!-- Results List -->
+        <ListView
+            android:id="@+id/lv_popup_search_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:background="#1F1F1F"
+            android:maxHeight="300dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView> 

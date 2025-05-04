@@ -1,184 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#212121"
-    android:padding="16dp">
+    android:fillViewport="true"
+    android:background="#121212">
 
-    <!-- Header Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingVertical="10dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_settings" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textColor="#fcfcfc"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <!-- Back Button -->
-    <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_back"
-        android:contentDescription="Back"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"/>
-
-    <!-- Preferences Title -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Preferences"
-        android:textColor="#fcfcfc"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp"/>
-
-    <!-- Preferences Container -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_form_bg"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="16dp">
 
-        <Switch
-            android:id="@+id/switch_notifications"
+        <!-- Top Bar with Back Button -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Notifications"
-            android:textColor="#fcfcfc"
-            android:padding="8dp"
-            android:thumbTint="@color/white"
-            android:trackTint="@color/white"/>
+            android:paddingVertical="8dp"
+            android:layout_marginBottom="16dp">
 
-        <!-- Language Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Language"
-                android:textColor="#fcfcfc"/>
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="English"
-                android:textColor="#d3d3d3" />
-        </LinearLayout>
+                android:text="Settings"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
 
-        <!-- Clear Recent Button Centered -->
-        <Button
-            android:id="@+id/button_clear_recent"
-            android:layout_width="wrap_content"
+        <!-- Preferences Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Clear Recent Elements"
-            android:textColor="#fcfcfc"
-            android:background="@drawable/rounded_form_bg"
-            android:layout_gravity="center_horizontal"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="10dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#1F1F1F"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preferences"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_notifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Notifications"
+                    android:textColor="#FFFFFF"
+                    android:padding="8dp"
+                    app:thumbTint="@color/purple_500"
+                    app:trackTint="#424242"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- Language Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Language"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textColor="#9E9E9E"
+                        android:textSize="16sp"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_more"
+                        android:layout_marginStart="8dp"
+                        app:tint="#9E9E9E"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Recent Data Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#1F1F1F"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="App Data"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_clear_recent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Clear Recent Elements"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#424242"
+                    app:cornerRadius="8dp"
+                    android:padding="12dp"
+                    android:textAllCaps="false"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- More Options Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#1F1F1F"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="More"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_developer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="About the Developers"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#424242"
+                    app:cornerRadius="8dp"
+                    android:padding="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAllCaps="false"
+                    app:icon="@android:drawable/ic_menu_info_details"
+                    app:iconTint="#FFFFFF"
+                    app:iconGravity="textStart"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Help and Support"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#424242"
+                    app:cornerRadius="8dp"
+                    android:padding="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAllCaps="false"
+                    app:icon="@android:drawable/ic_menu_help"
+                    app:iconTint="#FFFFFF"
+                    app:iconGravity="textStart"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_privacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Policy"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#424242"
+                    app:cornerRadius="8dp"
+                    android:padding="12dp"
+                    android:textAllCaps="false"
+                    app:icon="@android:drawable/ic_lock_lock"
+                    app:iconTint="#FFFFFF"
+                    app:iconGravity="textStart"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Logout Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:backgroundTint="#D32F2F"
+            app:cornerRadius="8dp"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
             android:textAllCaps="false"
-            android:stateListAnimator="@null" />
+            app:icon="@android:drawable/ic_lock_power_off"
+            app:iconTint="#FFFFFF"
+            app:iconGravity="textStart"/>
+
     </LinearLayout>
-
-    <!-- More Title -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="More"
-        android:textColor="#fcfcfc"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp"/>
-
-    <!-- More Options -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_form_bg"
-        android:padding="12dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/button_developer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="About the Developers"
-            android:background="@drawable/rounded_form_bg"
-            android:textColor="#fcfcfc"
-            android:gravity="start|center_vertical"
-            android:paddingVertical="10dp"
-            android:paddingStart="16dp"
-            android:textAllCaps="false"
-            android:stateListAnimator="@null"/>
-
-        <Button
-            android:id="@+id/button_help"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Help and Support"
-            android:background="@drawable/rounded_form_bg"
-            android:textColor="#fcfcfc"
-            android:gravity="start|center_vertical"
-            android:paddingVertical="10dp"
-            android:paddingStart="16dp"
-            android:textAllCaps="false"
-            android:stateListAnimator="@null"/>
-
-        <Button
-            android:id="@+id/button_privacy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Privacy Policy"
-            android:background="@drawable/rounded_form_bg"
-            android:textColor="#fcfcfc"
-            android:gravity="start|center_vertical"
-            android:paddingVertical="10dp"
-            android:paddingStart="16dp"
-            android:textAllCaps="false"
-            android:stateListAnimator="@null"/>
-    </LinearLayout>
-
-    <!-- Logout -->
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:background="@drawable/rounded_form_bg"
-        android:textColor="#f23337"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"/>
-</LinearLayout>
+</ScrollView>

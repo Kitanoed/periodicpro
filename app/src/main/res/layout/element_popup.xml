@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@drawable/dialog_background"
+    android:background="@drawable/rounded_form_bg"
+    android:backgroundTint="#121212"
     android:gravity="center_horizontal">
 
     <!-- Top bar with element symbol and favorite icon -->
@@ -68,9 +69,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="#2A2A2A"
-        app:cardElevation="2dp">
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="#1F1F1F"
+        app:cardElevation="4dp">
         
         <TableLayout
             android:layout_width="match_parent"
@@ -84,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Atomic Number:"
-                    android:textColor="#CCCCCC"
+                    android:textColor="#9E9E9E"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"/>
                     
@@ -104,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Atomic Weight:"
-                    android:textColor="#CCCCCC"
+                    android:textColor="#9E9E9E"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"/>
                     
@@ -124,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Row:"
-                    android:textColor="#CCCCCC"
+                    android:textColor="#9E9E9E"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"/>
                     
@@ -144,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Column:"
-                    android:textColor="#CCCCCC"
+                    android:textColor="#9E9E9E"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"/>
                     
@@ -164,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category:"
-                    android:textColor="#CCCCCC"
+                    android:textColor="#9E9E9E"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"/>
                     
@@ -180,13 +181,35 @@
         </TableLayout>
     </androidx.cardview.widget.CardView>
     
-    <!-- Close Button -->
-    <Button
-        android:id="@+id/popup_close_button"
+    <!-- Button Container -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CLOSE"
-        android:backgroundTint="#757575"
-        android:textColor="#FFFFFF"
-        android:paddingHorizontal="16dp"/>
+        android:orientation="vertical">
+        
+        <!-- See More Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/popup_see_more_button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="See More Details"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#8C9EFF"
+            android:textAllCaps="false"
+            android:layout_marginBottom="8dp"/>
+            
+        <!-- Close Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/popup_close_button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Close"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#424242"
+            android:textAllCaps="false"/>
+    </LinearLayout>
 </LinearLayout>

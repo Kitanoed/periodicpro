@@ -16,6 +16,9 @@ import org.json.JSONArray
 import org.json.JSONObject
 import com.app.periodicpro.data.Element
 import com.app.periodicpro.data.ElementCategory
+import com.app.periodicpro.ElementDetailsActivity
+import androidx.cardview.widget.CardView
+import com.google.android.material.button.MaterialButton
 
 class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedListener {
     private lateinit var navigationFragment: NavigationFragment
@@ -39,9 +42,10 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
         // Views
         searchBox = findViewById(R.id.edittext_search)
         val searchIcon = findViewById<ImageView>(R.id.search_icon)
-        val buttonTable = findViewById<Button>(R.id.button_pTable)
-        val buttonFavorites = findViewById<Button>(R.id.button_favorites)
+        val buttonTable = findViewById<MaterialButton>(R.id.button_pTable)
+        val buttonFavorites = findViewById<MaterialButton>(R.id.button_favorites)
         listRecent = findViewById(R.id.recent_list)
+        val viewAll = findViewById<TextView>(R.id.text_view_all)
 
         // Dropdown suggestions
         val elementNames = getAllElementNames()
@@ -69,6 +73,11 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
 
         buttonFavorites.setOnClickListener {
             startActivity(Intent(this, FavoritesActivity::class.java))
+        }
+        
+        // View all recent elements
+        viewAll.setOnClickListener {
+            startActivity(Intent(this, SearchResultsActivity::class.java))
         }
 
         // Load recent elements initially
@@ -123,6 +132,7 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
         )
     }
 
+    @SuppressLint("InflateParams")
     private fun showSearchResultsPopup() {
         // Create popup content view
         val popupView = layoutInflater.inflate(R.layout.search_results_popup, null)
@@ -251,7 +261,7 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             }
         }
 
-        while (updated.length() > 5) {
+        while (updated.length() > 10) {
             updated.remove(updated.length() - 1)
         }
 
@@ -273,7 +283,7 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             noRecentText.visibility = View.GONE
         }
 
-        val limit = 5
+        val limit = 10
         val start = maxOf(0, jsonArray.length() - limit)
 
         for (i in start until jsonArray.length()) {
@@ -363,6 +373,14 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             dialog.dismiss()
         }
         
+        // See More button
+        dialog.findViewById<Button>(R.id.popup_see_more_button).setOnClickListener {
+            val intent = Intent(this, ElementDetailsActivity::class.java)
+            intent.putExtra(ElementDetailsActivity.EXTRA_ELEMENT_ATOMIC_NUMBER, number)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        
         // Add to favorites button
         val favoriteIcon = dialog.findViewById<ImageView>(R.id.popup_add_favorites)
         
@@ -418,7 +436,7 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
             }
         }
 
-        while (updated.length() > 5) {
+        while (updated.length() > 10) {
             updated.remove(updated.length() - 1)
         }
 
@@ -663,7 +681,6 @@ class LandingActivity : Activity(), NavigationFragment.OnNavigationItemSelectedL
     override fun onNavigationItemSelected(itemId: Int) {
         val targetActivity = when (itemId) {
             R.id.button_landing -> null
-            R.id.button_table -> PeriodicTableActivity::class.java
             R.id.button_profile -> ProfileActivity::class.java
             R.id.button_settings -> SettingsActivity::class.java
             else -> null

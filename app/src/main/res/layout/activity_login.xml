@@ -1,92 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#212121"
-    android:gravity="center">
+    android:background="#121212"
+    android:gravity="center"
+    android:padding="24dp">
 
-    <!-- Logo Placeholder -->
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/logo"
-        android:layout_marginBottom="20dp"/>
-
-    <!-- App Name -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PeriodicPro"
-        android:textSize="24sp"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"/>
-
-    <!-- Login Form Container -->
+    <!-- Logo Container -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
-        android:layout_margin="20dp"
         android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="40dp"
-        android:background="@drawable/rounded_form_bg">
-
-        <!-- Username Input -->
-        <EditText
-            android:id="@+id/edittext_username"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Username"
-            android:textColorHint="#666666"
-            android:textColor="#000000"
-            android:padding="10dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/rounded_input_bg"
-            android:textSize="16sp"
-            tools:ignore="VisualLintTextFieldSize" />
-
-        <!-- Password Input -->
-        <EditText
-            android:id="@+id/edittext_password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Password"
-            android:textColorHint="#666666"
-            android:textColor="#000000"
-            android:padding="10dp"
-            android:inputType="textPassword"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded_input_bg"
-            tools:ignore="VisualLintTextFieldSize" />
-
-        <!-- Login Button -->
-        <Button
-            android:id="@+id/button_login"
+        android:layout_marginBottom="32dp">
+        
+        <!-- Logo Placeholder -->
+        <ImageView
             android:layout_width="120dp"
-            android:layout_height="48dp"
-            android:text="Login"
-            android:textColor="#000000"
+            android:layout_height="120dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="16dp"/>
 
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/rounded_button_bg"/>
+        <!-- App Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PeriodicPro"
+            android:textSize="30sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.05"/>
+            
+        <!-- Tagline -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Chemistry Companion"
+            android:textSize="14sp"
+            android:textColor="#9E9E9E"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
 
+    <!-- Login Form Container -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#1F1F1F"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Username Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="Username"
+                app:hintTextColor="#8C9EFF"
+                android:textColorHint="#9E9E9E"
+                app:boxStrokeColor="#8C9EFF"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="Password"
+                app:hintTextColor="#8C9EFF"
+                android:textColorHint="#9E9E9E"
+                app:boxStrokeColor="#8C9EFF"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#9E9E9E"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Login Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Login"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:backgroundTint="#8C9EFF"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <!-- Register Link -->
-    <TextView
-        android:id="@+id/button_register"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account? Register"
-        android:textColor="#3e64fa"
-        android:textSize="14sp"
-        android:clickable="true"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? "
+            android:textColor="#9E9E9E"
+            android:textSize="14sp" />
+            
+        <TextView
+            android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textColor="#8C9EFF"
+            android:textSize="14sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textStyle="bold"
+            android:background="?attr/selectableItemBackground"
+            android:padding="4dp" />
+    </LinearLayout>
 </LinearLayout>

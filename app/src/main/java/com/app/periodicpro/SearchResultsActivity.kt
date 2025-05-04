@@ -3,6 +3,7 @@ package com.app.periodicpro
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -152,6 +153,14 @@ class SearchResultsActivity : Activity() {
             dialog.dismiss()
         }
         
+        // See More button
+        dialog.findViewById<Button>(R.id.popup_see_more_button).setOnClickListener {
+            val intent = Intent(this, ElementDetailsActivity::class.java)
+            intent.putExtra(ElementDetailsActivity.EXTRA_ELEMENT_ATOMIC_NUMBER, element.atomicNumber)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        
         // Add to favorites button
         val favoriteIcon = dialog.findViewById<ImageView>(R.id.popup_add_favorites)
         
@@ -228,7 +237,7 @@ class SearchResultsActivity : Activity() {
             }
         }
 
-        while (updated.length() > 5) {
+        while (updated.length() > 10) {
             updated.remove(updated.length() - 1)
         }
 

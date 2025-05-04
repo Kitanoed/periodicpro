@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top bar with element symbol, name and back button -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp" />
+
+            <FrameLayout
+                android:id="@+id/element_symbol_container"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/button_back"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/element_symbol"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_nonmetal_bg"
+                    android:gravity="center"
+                    android:text="H"
+                    android:textColor="#000000"
+                    android:textSize="42sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/element_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Element Name"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_below="@id/element_symbol_container"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/element_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textColor="#AAAAAA"
+                android:textSize="16sp"
+                android:layout_below="@id/element_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp" />
+        </RelativeLayout>
+
+        <!-- Basic Properties -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#2A2A2A"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Basic Properties"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
+
+                    <!-- Atomic Number -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Atomic Number:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/atomic_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <!-- Atomic Mass -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Atomic Weight:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/atomic_mass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1.008"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <!-- Row and Column -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Position:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/element_position"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Row 1, Column 1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Physical Properties -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#2A2A2A"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Physical Properties"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
+
+                    <!-- Density -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Density:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/density"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0.0 g/cm³"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <!-- Melting Point -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Melting Point:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/melting_point"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0.0 K"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <!-- Boiling Point -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Boiling Point:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/boiling_point"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0.0 K"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Electronic Properties -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#2A2A2A"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Electronic Properties"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
+
+                    <!-- Electron Configuration -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Electron Configuration:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/electron_config"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1s¹"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <!-- Oxidation States -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Oxidation States:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/oxidation_states"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+1, -1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Historical Information -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#2A2A2A"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Historical Information"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
+
+                    <!-- Year Discovered -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Year Discovered:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/year_discovered"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1766"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <!-- Discoverer -->
+                    <TableRow android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Discoverer:"
+                            android:textColor="#CCCCCC"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/discoverer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Henry Cavendish"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Applications and Occurrence -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#2A2A2A"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Applications and Occurrence"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/applications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Used in various industrial applications..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView> 

@@ -1,134 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#212121"
-    android:padding="8dp">
+    android:background="#121212"
+    android:padding="16dp">
 
     <!-- Top App Bar with Back, Title, and Categories -->
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingVertical="10dp">
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="#1F1F1F"
+        app:cardElevation="4dp">
 
-        <!-- Back Button -->
-        <ImageView
-            android:id="@+id/btn_back_table"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_back"
-            android:contentDescription="Back"
-            android:clickable="true"
-            android:focusable="true" />
-
-        <!-- Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Periodic Table"
-            android:textColor="#fcfcfc"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <!-- Spacer -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <!-- Categories Button -->
-        <Button
-            android:id="@+id/btnShowCategories"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:text="Categories"
-            android:textSize="12sp"
-            android:background="@drawable/categories_button_bg"
-            android:textColor="#ffffff"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp"
-            android:textAllCaps="false" />
-    </LinearLayout>
-
-    <!-- Legend Preview -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingVertical="4dp"
-        android:paddingHorizontal="8dp"
-        android:background="@drawable/rounded_legend_bg"
-        android:layout_marginBottom="8dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Categories: "
-            android:textColor="#fcfcfc"
-            android:textSize="12sp" />
-
-        <!-- Color Preview Circles -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:padding="16dp">
 
-            <View android:layout_width="12dp" android:layout_height="12dp"
-                android:background="@drawable/rounded_alkali_metal_bg"
-                android:layout_marginEnd="2dp" />
-            <View android:layout_width="12dp" android:layout_height="12dp"
-                android:background="@drawable/rounded_nonmetal_bg"
-                android:layout_marginEnd="2dp" />
-            <View android:layout_width="12dp" android:layout_height="12dp"
-                android:background="@drawable/rounded_transition_bg"
-                android:layout_marginEnd="2dp" />
-            <View android:layout_width="12dp" android:layout_height="12dp"
-                android:background="@drawable/rounded_noble_gas_bg"
-                android:layout_marginEnd="2dp" />
-            <View android:layout_width="12dp" android:layout_height="12dp"
-                android:background="@drawable/rounded_metalloid_bg"
-                android:layout_marginEnd="2dp" />
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/btn_back_table"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Back"
+                android:clickable="true"
+                android:focusable="true"
+                app:tint="#FFFFFF" />
 
+            <!-- Title -->
             <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Periodic Table"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Categories Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShowCategories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="..."
-                android:textColor="#fcfcfc"
-                android:textSize="12sp" />
+                android:text="Categories"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp"
+                app:backgroundTint="#8C9EFF"
+                android:textAllCaps="false"
+                android:minHeight="48dp" />
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Legend Preview -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="#1F1F1F"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Element Categories"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Color Legend Items -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                
+                <View android:layout_width="24dp" 
+                      android:layout_height="24dp"
+                      android:background="@drawable/rounded_alkali_metal_bg"
+                      android:layout_marginEnd="8dp" />
+                      
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alkali Metals"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                
+                <View android:layout_width="24dp" 
+                      android:layout_height="24dp"
+                      android:background="@drawable/rounded_nonmetal_bg"
+                      android:layout_marginEnd="8dp" />
+                      
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Non-Metals"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                
+                <View android:layout_width="24dp" 
+                      android:layout_height="24dp"
+                      android:background="@drawable/rounded_transition_bg"
+                      android:layout_marginEnd="8dp" />
+                      
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transition Metals"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewAllCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View All Categories"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp"
+                app:backgroundTint="#424242"
+                android:textAllCaps="false"
+                android:minHeight="48dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <!-- Periodic Table Scrollable Grid -->
-    <HorizontalScrollView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true"
-        android:scrollbars="horizontal"
-        android:background="@drawable/rounded_table_bg">
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="#1F1F1F"
+        app:cardElevation="4dp">
 
-        <ScrollView
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:scrollbars="vertical">
+            android:scrollbars="horizontal">
 
-            <GridLayout
-                android:id="@+id/periodicTableGrid"
+            <ScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:columnCount="18"
-                android:rowCount="9"
-                android:padding="8dp"
-                android:useDefaultMargins="true" />
-        </ScrollView>
-    </HorizontalScrollView>
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="vertical">
+
+                <GridLayout
+                    android:id="@+id/periodicTableGrid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:columnCount="18"
+                    android:rowCount="9"
+                    android:padding="12dp"
+                    android:useDefaultMargins="true" />
+            </ScrollView>
+        </HorizontalScrollView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

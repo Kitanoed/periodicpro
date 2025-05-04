@@ -2,6 +2,7 @@ package com.app.periodicpro
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.app.periodicpro.data.Element
 import com.app.periodicpro.data.ElementCategory
+import com.google.android.material.button.MaterialButton
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -23,23 +25,25 @@ class PeriodicTableActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_periodic_table)
 
-
         val backBtn = findViewById<ImageView>(R.id.btn_back_table)
         backBtn.setOnClickListener {
             finish()
         }
 
-
-
         gridLayout = findViewById(R.id.periodicTableGrid)
-
 
         initializeElements()
         setupPeriodicTable()
 
-        // Category filter button (optional)
-        val btnShowCategories = findViewById<Button>(R.id.btnShowCategories)
+        // Category filter button
+        val btnShowCategories = findViewById<MaterialButton>(R.id.btnShowCategories)
         btnShowCategories.setOnClickListener {
+            showCategoriesDialog()
+        }
+        
+        // View all categories button
+        val btnViewAllCategories = findViewById<MaterialButton>(R.id.btnViewAllCategories)
+        btnViewAllCategories.setOnClickListener {
             showCategoriesDialog()
         }
     }
@@ -49,7 +53,7 @@ class PeriodicTableActivity : Activity() {
         dialog.setContentView(R.layout.dialog_element_categories)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val closeBtn = dialog.findViewById<Button>(R.id.btnCloseDialog)
+        val closeBtn = dialog.findViewById<MaterialButton>(R.id.btnCloseDialog)
         closeBtn.setOnClickListener {
             dialog.dismiss()
         }
@@ -91,7 +95,16 @@ class PeriodicTableActivity : Activity() {
             element.category.name.replace("_", " ").lowercase().replaceFirstChar { it.uppercase() }
 
         // Close button
-        dialog.findViewById<Button>(R.id.popup_close_button).setOnClickListener {
+        dialog.findViewById<MaterialButton>(R.id.popup_close_button).setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        // See More button
+        dialog.findViewById<MaterialButton>(R.id.popup_see_more_button).setOnClickListener {
+            Toast.makeText(this, "Opening details for ${element.name}...", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ElementDetailsActivity::class.java)
+            intent.putExtra(ElementDetailsActivity.EXTRA_ELEMENT_ATOMIC_NUMBER, element.atomicNumber)
+            startActivity(intent)
             dialog.dismiss()
         }
         

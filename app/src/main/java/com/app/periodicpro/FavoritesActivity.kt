@@ -3,12 +3,14 @@ package com.app.periodicpro
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import com.app.periodicpro.data.Element
 import com.app.periodicpro.data.ElementCategory
 import com.app.periodicpro.data.FavoriteElement
 import com.app.periodicpro.helper.ElementListViewAdapter
+import com.app.periodicpro.ElementDetailsActivity
 
 class FavoritesActivity : Activity() {
 
@@ -121,6 +123,14 @@ class FavoritesActivity : Activity() {
             // Set the symbol background color based on element category
             val bgResId = getCategoryBackgroundResource(elementData.category)
             symbolView.setBackgroundResource(bgResId)
+            
+            // Set See More button click listener
+            dialog.findViewById<Button>(R.id.popup_see_more_button).setOnClickListener {
+                val intent = Intent(this, ElementDetailsActivity::class.java)
+                intent.putExtra(ElementDetailsActivity.EXTRA_ELEMENT_ATOMIC_NUMBER, atomicNumber)
+                startActivity(intent)
+                dialog.dismiss()
+            }
         } else {
             dialog.findViewById<TextView>(R.id.popup_atomic_mass).text = "-"
             dialog.findViewById<TextView>(R.id.popup_row).text = "-"
@@ -131,6 +141,11 @@ class FavoritesActivity : Activity() {
             subject.category?.let {
                 symbolView.setBackgroundResource(getCategoryBackgroundResource(it))
             }
+            
+            // Disable See More button if element data is not available
+            val seeMoreButton = dialog.findViewById<Button>(R.id.popup_see_more_button)
+            seeMoreButton.isEnabled = false
+            seeMoreButton.alpha = 0.5f
         }
 
         dialog.findViewById<Button>(R.id.popup_close_button).setOnClickListener {
@@ -157,7 +172,7 @@ class FavoritesActivity : Activity() {
             
             Toast.makeText(this, "$name removed from favorites!", Toast.LENGTH_SHORT).show()
         }
-
+        
         dialog.show()
     }
     
@@ -222,10 +237,97 @@ class FavoritesActivity : Activity() {
             Element(35, "Br", "Bromine", 4, 17, ElementCategory.HALOGEN, 79.904),
             Element(36, "Kr", "Krypton", 4, 18, ElementCategory.NOBLE_GAS, 83.798),
 
-            // Other periods would follow the same pattern...
-            // For brevity, I've included just a subset of elements
-            
-            // You can add more periods as needed
+            // Period 5
+            Element(37, "Rb", "Rubidium", 5, 1, ElementCategory.ALKALI_METAL, 85.468),
+            Element(38, "Sr", "Strontium", 5, 2, ElementCategory.ALKALINE_EARTH_METAL, 87.62),
+            Element(39, "Y", "Yttrium", 5, 3, ElementCategory.TRANSITION_METAL, 88.906),
+            Element(40, "Zr", "Zirconium", 5, 4, ElementCategory.TRANSITION_METAL, 91.224),
+            Element(41, "Nb", "Niobium", 5, 5, ElementCategory.TRANSITION_METAL, 92.906),
+            Element(42, "Mo", "Molybdenum", 5, 6, ElementCategory.TRANSITION_METAL, 95.95),
+            Element(43, "Tc", "Technetium", 5, 7, ElementCategory.TRANSITION_METAL, 98.0),
+            Element(44, "Ru", "Ruthenium", 5, 8, ElementCategory.TRANSITION_METAL, 101.07),
+            Element(45, "Rh", "Rhodium", 5, 9, ElementCategory.TRANSITION_METAL, 102.91),
+            Element(46, "Pd", "Palladium", 5, 10, ElementCategory.TRANSITION_METAL, 106.42),
+            Element(47, "Ag", "Silver", 5, 11, ElementCategory.TRANSITION_METAL, 107.87),
+            Element(48, "Cd", "Cadmium", 5, 12, ElementCategory.TRANSITION_METAL, 112.41),
+            Element(49, "In", "Indium", 5, 13, ElementCategory.POST_TRANSITION_METAL, 114.82),
+            Element(50, "Sn", "Tin", 5, 14, ElementCategory.POST_TRANSITION_METAL, 118.71),
+            Element(51, "Sb", "Antimony", 5, 15, ElementCategory.METALLOID, 121.76),
+            Element(52, "Te", "Tellurium", 5, 16, ElementCategory.METALLOID, 127.60),
+            Element(53, "I", "Iodine", 5, 17, ElementCategory.HALOGEN, 126.90),
+            Element(54, "Xe", "Xenon", 5, 18, ElementCategory.NOBLE_GAS, 131.29),
+
+            // Period 6
+            Element(55, "Cs", "Cesium", 6, 1, ElementCategory.ALKALI_METAL, 132.91),
+            Element(56, "Ba", "Barium", 6, 2, ElementCategory.ALKALINE_EARTH_METAL, 137.33),
+            Element(57, "La", "Lanthanum", 6, 3, ElementCategory.LANTHANIDE, 138.91),
+            Element(72, "Hf", "Hafnium", 6, 4, ElementCategory.TRANSITION_METAL, 178.49),
+            Element(73, "Ta", "Tantalum", 6, 5, ElementCategory.TRANSITION_METAL, 180.95),
+            Element(74, "W", "Tungsten", 6, 6, ElementCategory.TRANSITION_METAL, 183.84),
+            Element(75, "Re", "Rhenium", 6, 7, ElementCategory.TRANSITION_METAL, 186.21),
+            Element(76, "Os", "Osmium", 6, 8, ElementCategory.TRANSITION_METAL, 190.23),
+            Element(77, "Ir", "Iridium", 6, 9, ElementCategory.TRANSITION_METAL, 192.22),
+            Element(78, "Pt", "Platinum", 6, 10, ElementCategory.TRANSITION_METAL, 195.08),
+            Element(79, "Au", "Gold", 6, 11, ElementCategory.TRANSITION_METAL, 196.97),
+            Element(80, "Hg", "Mercury", 6, 12, ElementCategory.TRANSITION_METAL, 200.59),
+            Element(81, "Tl", "Thallium", 6, 13, ElementCategory.POST_TRANSITION_METAL, 204.38),
+            Element(82, "Pb", "Lead", 6, 14, ElementCategory.POST_TRANSITION_METAL, 207.2),
+            Element(83, "Bi", "Bismuth", 6, 15, ElementCategory.POST_TRANSITION_METAL, 208.98),
+            Element(84, "Po", "Polonium", 6, 16, ElementCategory.POST_TRANSITION_METAL, 209.0),
+            Element(85, "At", "Astatine", 6, 17, ElementCategory.HALOGEN, 210.0),
+            Element(86, "Rn", "Radon", 6, 18, ElementCategory.NOBLE_GAS, 222.0),
+
+            // Period 7
+            Element(87, "Fr", "Francium", 7, 1, ElementCategory.ALKALI_METAL, 223.0),
+            Element(88, "Ra", "Radium", 7, 2, ElementCategory.ALKALINE_EARTH_METAL, 226.0),
+            Element(89, "Ac", "Actinium", 7, 3, ElementCategory.ACTINIDE, 227.0),
+            Element(104, "Rf", "Rutherfordium", 7, 4, ElementCategory.TRANSITION_METAL, 267.0),
+            Element(105, "Db", "Dubnium", 7, 5, ElementCategory.TRANSITION_METAL, 270.0),
+            Element(106, "Sg", "Seaborgium", 7, 6, ElementCategory.TRANSITION_METAL, 269.0),
+            Element(107, "Bh", "Bohrium", 7, 7, ElementCategory.TRANSITION_METAL, 270.0),
+            Element(108, "Hs", "Hassium", 7, 8, ElementCategory.TRANSITION_METAL, 277.0),
+            Element(109, "Mt", "Meitnerium", 7, 9, ElementCategory.TRANSITION_METAL, 278.0),
+            Element(110, "Ds", "Darmstadtium", 7, 10, ElementCategory.TRANSITION_METAL, 281.0),
+            Element(111, "Rg", "Roentgenium", 7, 11, ElementCategory.TRANSITION_METAL, 282.0),
+            Element(112, "Cn", "Copernicium", 7, 12, ElementCategory.TRANSITION_METAL, 285.0),
+            Element(113, "Nh", "Nihonium", 7, 13, ElementCategory.POST_TRANSITION_METAL, 286.0),
+            Element(114, "Fl", "Flerovium", 7, 14, ElementCategory.POST_TRANSITION_METAL, 289.0),
+            Element(115, "Mc", "Moscovium", 7, 15, ElementCategory.POST_TRANSITION_METAL, 289.0),
+            Element(116, "Lv", "Livermorium", 7, 16, ElementCategory.POST_TRANSITION_METAL, 293.0),
+            Element(117, "Ts", "Tennessine", 7, 17, ElementCategory.HALOGEN, 293.0),
+            Element(118, "Og", "Oganesson", 7, 18, ElementCategory.NOBLE_GAS, 294.0),
+
+            // Lanthanides (row 8)
+            Element(58, "Ce", "Cerium", 8, 4, ElementCategory.LANTHANIDE, 140.12),
+            Element(59, "Pr", "Praseodymium", 8, 5, ElementCategory.LANTHANIDE, 140.91),
+            Element(60, "Nd", "Neodymium", 8, 6, ElementCategory.LANTHANIDE, 144.24),
+            Element(61, "Pm", "Promethium", 8, 7, ElementCategory.LANTHANIDE, 145.0),
+            Element(62, "Sm", "Samarium", 8, 8, ElementCategory.LANTHANIDE, 150.36),
+            Element(63, "Eu", "Europium", 8, 9, ElementCategory.LANTHANIDE, 151.96),
+            Element(64, "Gd", "Gadolinium", 8, 10, ElementCategory.LANTHANIDE, 157.25),
+            Element(65, "Tb", "Terbium", 8, 11, ElementCategory.LANTHANIDE, 158.93),
+            Element(66, "Dy", "Dysprosium", 8, 12, ElementCategory.LANTHANIDE, 162.50),
+            Element(67, "Ho", "Holmium", 8, 13, ElementCategory.LANTHANIDE, 164.93),
+            Element(68, "Er", "Erbium", 8, 14, ElementCategory.LANTHANIDE, 167.26),
+            Element(69, "Tm", "Thulium", 8, 15, ElementCategory.LANTHANIDE, 168.93),
+            Element(70, "Yb", "Ytterbium", 8, 16, ElementCategory.LANTHANIDE, 173.05),
+            Element(71, "Lu", "Lutetium", 8, 17, ElementCategory.LANTHANIDE, 174.97),
+
+            // Actinides (row 9)
+            Element(90, "Th", "Thorium", 9, 4, ElementCategory.ACTINIDE, 232.04),
+            Element(91, "Pa", "Protactinium", 9, 5, ElementCategory.ACTINIDE, 231.04),
+            Element(92, "U", "Uranium", 9, 6, ElementCategory.ACTINIDE, 238.03),
+            Element(93, "Np", "Neptunium", 9, 7, ElementCategory.ACTINIDE, 237.0),
+            Element(94, "Pu", "Plutonium", 9, 8, ElementCategory.ACTINIDE, 244.0),
+            Element(95, "Am", "Americium", 9, 9, ElementCategory.ACTINIDE, 243.0),
+            Element(96, "Cm", "Curium", 9, 10, ElementCategory.ACTINIDE, 247.0),
+            Element(97, "Bk", "Berkelium", 9, 11, ElementCategory.ACTINIDE, 247.0),
+            Element(98, "Cf", "Californium", 9, 12, ElementCategory.ACTINIDE, 251.0),
+            Element(99, "Es", "Einsteinium", 9, 13, ElementCategory.ACTINIDE, 252.0),
+            Element(100, "Fm", "Fermium", 9, 14, ElementCategory.ACTINIDE, 257.0),
+            Element(101, "Md", "Mendelevium", 9, 15, ElementCategory.ACTINIDE, 258.0),
+            Element(102, "No", "Nobelium", 9, 16, ElementCategory.ACTINIDE, 259.0),
+            Element(103, "Lr", "Lawrencium", 9, 17, ElementCategory.ACTINIDE, 262.0)
         )
     }
 
